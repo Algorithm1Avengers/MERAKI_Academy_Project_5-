@@ -13,6 +13,7 @@ import { WiDaySunny  } from 'react-icons/wi';
 import { FaShoppingCart } from 'react-icons/fa'
 import HotelIcon from '@mui/icons-material/Hotel'
 import MdLocationOnIcon from '@mui/icons-material/LocationOn'; 
+import Avatar from "@mui/material/Avatar";
 import SendSocketMessages from '../Socket/SendSocketMessages';
 const TouristSpotsDeatils = () => {
   const isLoggedIn=useSelector((initialState)=> initialState.login.isLoggedIn)
@@ -32,7 +33,24 @@ const [spotInfo, setspotInfo] = useState("")
 const [message, setMessage] = useState("")
 const [spotId, setSpotId] = useState("")
 const [weather, setWeather] = useState("")
-
+const [image, setimage] = useState("")
+useEffect(() => {
+    
+  const fetchUserData = async () => {
+    try {
+      
+      const response = await axios.get(`http://localhost:5000/users/userinfo/${userId}`);
+      setimage(response.data.result[0].image); 
+      console.log(response)
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+if (userId){
+fetchUserData();
+}
+  
+}, [userId]);
 
 
   const getSpotByName=async()=>{
@@ -165,7 +183,7 @@ const weatherData = weather.data && weather.data[0];
             </CardContent>
             
             <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-              <WiDaySunny size={30} color="#FF9800" />
+              <WiDaySunny size={40} color="#FF9800" />
             </Box>
           </Card>
         </Grid>
@@ -179,9 +197,9 @@ const weatherData = weather.data && weather.data[0];
             </CardContent>
             
             <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-              <MdLocationOnIcon size={30} color="#4CAF50" />
+              <MdLocationOnIcon size={60} color="#4CAF50" />
             </Box>
-          </Card>
+          </Card> 
         </Grid>
 
        
@@ -207,7 +225,7 @@ const weatherData = weather.data && weather.data[0];
             </CardContent>
             
             <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-              <HotelIcon  size={30} color="#9C27B0" />
+              <HotelIcon size={50} color="#9C27B0" />
             </Box>
           </Card>
         </Grid>
@@ -294,6 +312,11 @@ const weatherData = weather.data && weather.data[0];
           <Box sx={{ flex: 1 }}>
             {spotInfo[0] && spotInfo[0].reviews.map((review, index) => (
               <Paper key={index} sx={{ padding: 2, marginBottom: 2, borderRadius: 2, boxShadow: 2 }}>
+                    <IconButton sx={{ p: 0 }}>
+                    <Avatar alt="User" src={image}
+                    />
+                  </IconButton>
+
                 <Typography variant="h6" component="div">
                   {review.first_name}
                 </Typography>
