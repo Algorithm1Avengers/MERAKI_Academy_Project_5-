@@ -195,7 +195,7 @@ const Navbar = () => {
   console.log(image)
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: "white", color: "black" }}>
+    <AppBar position="relative" sx={{ backgroundColor: "white", color: "black", mb: 2 }}>
     <Container maxWidth="xl">
       <Toolbar disableGutters>
         <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
