@@ -10,7 +10,7 @@ function Welcome() {
           <source src="./src/assets/video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video> */}
-  <Carousel className='carousel'fade  interval={5000} style={{ width: '100%', margin:"10px 20px 0px 0px " }} >
+  <Carousel className='carousel'fade  interval={5000} style={{ width: '100%',marginBottom:"2px"}} >
       <Carousel.Item  interval={5000}>
       <video autoPlay muted loop className="header-background" >
           <source src="./src/assets/sunset1.mp4" type="video/mp4" />

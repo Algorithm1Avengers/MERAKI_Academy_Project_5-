@@ -46,7 +46,7 @@ console.log(category);
 
 
     return (
-      <div className="container">
+      <div className="container" style={{marginBottom:"2rem"}}>
         {message && <p className="error-message">{message}</p>} 
   
         {category === null ? (
@@ -54,13 +54,13 @@ console.log(category);
         ) : (
           <Row>
             {category?.map((elem) => (
-              <Col key={elem.id} xs={12} md={4} lg={3}>
+              <Col key={elem.id} xs={12} md={10} lg={3}>
                 <div className="mb-2 image-container">
                   <div className="card" style={{ width: "20rem", height: "22rem", backgroundColor: "#BEBEC0" }}>
                     <img
                       src={elem.image_url}
                       className="card-img-top"
-                      style={{ width: "20rem", height: "16rem" }}
+                      style={{  height: "16rem" }}
                       alt={elem.category_name} // Add alt text for accessibility
                     />
                     <div className="card-body ">
