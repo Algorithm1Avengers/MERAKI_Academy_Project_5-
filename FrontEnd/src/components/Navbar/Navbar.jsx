@@ -38,6 +38,13 @@ const pages = ["Top Spots", "Market", "Cart", "About Us"];
 const settings = ["Account", "Favourites", "Orders", "Logout"];
 
 const Navbar = () => {
+  
+  const cart = useSelector((state) => state.cart.items);
+  // Calculating the total number of items in the cart
+  const totalItems = Array.isArray(cart)
+    ? cart.reduce((acc, item) => acc + item.quantity, 0)
+    : 0;
+
   const userId=useSelector((initialState)=> initialState.login.userId)
   const dispatch=useDispatch()
   const [newMessages, setNewMessages] = useState(false); 
@@ -301,7 +308,7 @@ const Navbar = () => {
             
             {page === "Cart" ? (
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={totalItems} color="error">
             <ShoppingCartIcon sx={{ order: -1 }} />
           </Badge>
           <Typography>Cart</Typography>
