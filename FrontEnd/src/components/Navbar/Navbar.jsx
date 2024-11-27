@@ -24,6 +24,12 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
+/* */
+import MarketIcon from '@mui/icons-material/Storefront';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ExploreIcon from '@mui/icons-material/Explore';
+import InfoIcon from '@mui/icons-material/Info';
+
 
 import ReceiveSocketMessages from "../Socket/ReciveSocketMessages";
 import { setLogout } from "../../../Redux/reducers/login";
@@ -267,6 +273,7 @@ const Navbar = () => {
                     ? navigateToAbout
                     : handleCloseNavMenu
                 }
+
               >
                 <Typography>{page}</Typography>
               </MenuItem>
@@ -289,9 +296,34 @@ const Navbar = () => {
                   ? navigateToAbout
                   : handleCloseNavMenu
               }
-              sx={{ mx: 3, color: "black", display: "block" }}
+              sx={{ mx: 4.8, color: "black", display: "block" }}
             >
-              {page}
+            
+            {page === "Cart" ? (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Badge badgeContent={4} color="error">
+            <ShoppingCartIcon sx={{ order: -1 }} />
+          </Badge>
+          <Typography>Cart</Typography>
+        </Box>
+      ) : page === "Market" ? (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <MarketIcon />
+          <Typography>Market</Typography>
+        </Box>
+      ) : page === "Top Spots" ? (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <ExploreIcon />
+          <Typography>Top Spots</Typography>
+        </Box>
+      ) : page === "About Us" ? (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <InfoIcon />
+          <Typography>About Us</Typography>
+        </Box>
+      ) : (
+        page
+      )}        
             </Button>
           ))}
         </Box>
