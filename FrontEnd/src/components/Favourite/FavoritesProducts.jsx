@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../../../Redux/reducers/products';  
 import { setProducts, setLoading } from "../../../Redux/reducers/products"
 import axios from 'axios';
-
+import "./Favorites.css"
 
 function FavoritesProducts() {
 
@@ -67,7 +67,7 @@ function FavoritesProducts() {
             {products
                 .filter(product => favorites.includes(product.id)) // Filter only favorite-products
                 .map(product => (
-                    <div key={product.id} className="food-card all-favorites-cards slide-up-animation">
+                    <div key={product.id} className="product-card all-favorites-cards slide-up-animation">
                         <div className="img-wrapper">
                             <img 
                                 src={product.image} 
@@ -81,14 +81,13 @@ function FavoritesProducts() {
                         </div>
                         <div className="details">
                             <h3>{product.name}</h3>
-                            <p className="calori">
-                                <FaDollarSign style={{ color: 'green', marginRight: '0px' }} />
-                                Price: ${product.price}
+                            <p className="price">
+                                Price:{product.price}JD
                             </p>
                             <div className="time-rating">
                                 <p className="timee">
-                                    <span className="material-icons red-icon">local_fire_department</span>
-                                    {product.calories} cal
+                                    <span className="material-icons red-icon"></span>
+                                    {product.extra} ext
                                 </p>
                                 <p className="ratee">⭐ {product.rating}</p>
                             </div>
