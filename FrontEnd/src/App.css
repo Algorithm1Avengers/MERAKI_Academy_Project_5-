@@ -1,3 +1,6 @@
+body {
+  margin-top: 66px !important; /* Add the distance equal to the height of the AppBar */
+}
 
 .login-container {
     display: flex;

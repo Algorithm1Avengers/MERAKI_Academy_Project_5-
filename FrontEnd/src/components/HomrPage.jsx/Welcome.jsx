@@ -24,7 +24,7 @@ const Welcome = ()=> {
         </video> */}
 
         
-  <Carousel className='carousel'fade  interval={5000} style={{ width: '100%',marginBottom:"2px"}} >
+  <Carousel className='carousel'fade  interval={5000} style={{ width: '100%',marginBottom:"2px",}} >
       <Carousel.Item  interval={5000}>
       <video autoPlay muted loop className="header-background"  style={{ width: "100vw", height: "65vh", margin: "0 auto" }}>
           <source src="./src/assets/na5.mp4" type="video/mp4" />

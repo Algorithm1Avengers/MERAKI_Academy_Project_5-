@@ -62,7 +62,9 @@ function App() {
 
     
     <SocketMessages>
-     <Navbar/> 
+    
+    <Navbar/> 
+
     <Routes>
     <Route path="/Navbar" element={<Navbar/>}/>
     <Route path="/" element={<HomePage/>}/>

@@ -210,8 +210,8 @@ const Navbar = () => {
 
 
   return (
-    <AppBar position="relative" sx={{   background: "linear-gradient(90deg, #ff8a00, #fc2976)"
-      , color: "black", mb: 2 , height: "66px" , margin:"0px" }}>
+    <AppBar position="fixed" sx={{   background: "linear-gradient(90deg, #ff8a00, #fc2976)"
+      , color: "black", mb: 2 , height: "66px" , margin:"0px", zIndex:"4"}}>
 
             {/* Video background */}
           {/*  <Box
