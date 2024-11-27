@@ -243,7 +243,7 @@ const Navbar = () => {
         <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
           <img
             id="logo"
-            src="./src/assets/Screenshot 2024-11-14 201237.png"
+            src="/puplic-logo.png"
             alt="Logo"
             style={{ height: "55px", width: "160px" }}
             onClick={() => navigate("/")}
