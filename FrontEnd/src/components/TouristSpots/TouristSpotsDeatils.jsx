@@ -14,7 +14,13 @@ import { FaShoppingCart } from 'react-icons/fa'
 import HotelIcon from '@mui/icons-material/Hotel'
 import MdLocationOnIcon from '@mui/icons-material/LocationOn'; 
 import SendSocketMessages from '../Socket/SendSocketMessages';
+
+import { useNavigate } from 'react-router-dom';
+
+
 const TouristSpotsDeatils = () => {
+  const navigate = useNavigate();
+
   const isLoggedIn=useSelector((initialState)=> initialState.login.isLoggedIn)
   const userId=useSelector((initialState)=> initialState.login.userId)
 
@@ -136,9 +142,7 @@ const weatherData = weather.data && weather.data[0];
 
 
 
- 
-
-
+console.log("spotId",spotId)
   return (
     <>
     <SendSocketMessages/>
@@ -189,7 +193,11 @@ const weatherData = weather.data && weather.data[0];
           <Card sx={{ height: '100%', position: 'relative' }}>
             <CardContent>
               <Typography variant="h5" gutterBottom>E-Commerce</Typography>
-              <Button variant="contained" href="#" target="_blank">Shop Now</Button>
+              <Button variant="contained" target="_blank"
+              onClick={() =>{
+                console.log("spotId in TouristSpot:", spotId); navigate(`/products/${spotId}`);
+              }}
+              >Shop Now</Button>
             </CardContent>
            
             <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
