@@ -125,7 +125,7 @@ const Navbar = () => {
     navigate("/TouristSpots")
   };
   const navigateToMarket=()=>{
-    navigate("/Products")
+    navigate("/Market")
   };
 
   const navigateToCart=()=>{
@@ -146,7 +146,7 @@ const Navbar = () => {
   };
 
   const navigateToOrders = () => {
-    navigate("/Orders");
+    navigate("/my-PreviousOrders");
     handleCloseUserMenu(); 
   };
 
@@ -206,9 +206,38 @@ const Navbar = () => {
     setAnchorElMail(null); 
   };
   console.log(image)
+//background: "linear-gradient(90deg, #ff8a00, #fc2976)"
+
 
   return (
-    <AppBar position="relative" sx={{ backgroundColor: "white", color: "black", mb: 2 }}>
+    <AppBar position="relative" sx={{   background: "linear-gradient(90deg, #ff8a00, #fc2976)"
+      , color: "black", mb: 2 , height: "66px" , margin:"0px" }}>
+
+            {/* Video background */}
+          {/*  <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1, 
+        }}
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          style={{
+            objectFit: "cover", 
+            width: "140%",
+            height: "200%",
+          }}
+        >
+          <source src="./src/assets/cloud2.mp4" type="video/mp4" />
+        </video>
+      </Box>*/}
+
     <Container maxWidth="xl">
       <Toolbar disableGutters>
         <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
@@ -216,7 +245,7 @@ const Navbar = () => {
             id="logo"
             src="./src/assets/Screenshot 2024-11-14 201237.png"
             alt="Logo"
-            style={{ height: "70px", width: "200px" }}
+            style={{ height: "55px", width: "160px" }}
             onClick={() => navigate("/")}
           />
         </Box>
@@ -280,7 +309,12 @@ const Navbar = () => {
                     ? navigateToAbout
                     : handleCloseNavMenu
                 }
-
+                sx={{
+                  mx: 3,
+                  color: "black",
+                  display: "flex",
+                  alignItems: "center",
+                }}
               >
                 <Typography>{page}</Typography>
               </MenuItem>
@@ -291,6 +325,7 @@ const Navbar = () => {
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
           {pages.map((page) => (
             <Button
+            className="mooon"
               key={page}
               onClick={
                 page === "Top Spots"
@@ -303,29 +338,29 @@ const Navbar = () => {
                   ? navigateToAbout
                   : handleCloseNavMenu
               }
-              sx={{ mx: 4.8, color: "black", display: "block" }}
+              sx={{ mx: 9.9, color: "black", display: "block" }}
             >
             
             {page === "Cart" ? (
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Badge badgeContent={totalItems} color="error">
-            <ShoppingCartIcon sx={{ order: -1 }} />
+            <ShoppingCartIcon className="moon-icon" sx={{ order: -1 }} />
           </Badge>
           <Typography>Cart</Typography>
         </Box>
       ) : page === "Market" ? (
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <MarketIcon />
+          <MarketIcon className="moon-icon"/>
           <Typography>Market</Typography>
         </Box>
       ) : page === "Top Spots" ? (
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <ExploreIcon />
+          <ExploreIcon className="moon-icon"/>
           <Typography>Top Spots</Typography>
         </Box>
       ) : page === "About Us" ? (
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <InfoIcon />
+          <InfoIcon className="moon-icon"/>
           <Typography>About Us</Typography>
         </Box>
       ) : (
@@ -335,7 +370,7 @@ const Navbar = () => {
           ))}
         </Box>
 
-        <Box>
+{/*       <Box>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -343,6 +378,7 @@ const Navbar = () => {
             <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
           </Search>
 </Box>
+*/} 
           <Box sx={{ flexGrow: 0 }}>
             {isLoggedIn ? (
               <>
@@ -422,7 +458,7 @@ const Navbar = () => {
               </Menu>
             </>
           ) : (
-            <Button onClick={handleSignInClick} sx={{ color: "black" }}>
+            <Button onClick={handleSignInClick} sx={{ color: "white" }}>
               Sign In
             </Button>
           )}
