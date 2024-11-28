@@ -2,11 +2,11 @@ import React , {useContext, useState} from 'react'
 import axios from "axios"
 
 import { useNavigate } from 'react-router-dom'
- import registerimage from "../../assets/register.pic.jpeg" 
+ import registerimage from "../../assets/permides.jpeg" 
 
 import { Container, Card, CardContent, TextField, Button, Typography, Grid } from '@mui/material'
 
-
+import PersonAddIcon from '@mui/icons-material/PersonAdd'
 const Register = () => {
  
   const [firstName, setfirstName] = useState("");
@@ -87,8 +87,8 @@ const Register = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <CardContent>
-                <Typography variant="h5" component="h1" gutterBottom>
-                  Create your account
+                <Typography variant="h5" component="h1" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: '500', marginBottom: '20px' }}>
+                  Create your account   <PersonAddIcon style={{ marginRight: '20px', color: '#D1B28E'  }}/>
                 </Typography>
                 <TextField
                   label="First Name"
@@ -151,10 +151,22 @@ const Register = () => {
                   error={!!error.password}
                   helperText={error.password}
                 />
-<input type="file" onChange={handleImageUpload} />
+  <Button
+                  variant="outlined"
+                  fullWidth
+                  component="label"
+                  style={{ backgroundColor: '#D1B28E', color: 'white', margin: '10px 0' ,fontWeight:"700", fontSize:"15px"}}
+                >
+                  Upload Profile Picture
+                  <input
+                    type="file"
+                    onChange={handleImageUpload}
+                    hidden
+                  />
+                </Button>
                 <Button
                   variant="contained"
-                  color="primary"
+                  style={{backgroundColor: "#D1B28E",fontWeight:"700", fontSize:"15px"}}
                   fullWidth
                   onClick={RegisterButton}
                 >
