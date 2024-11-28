@@ -24,32 +24,14 @@ const Users = () => {
           setuserdata(res.data.result)
         
         }).catch((err)=>{
-          //seterror1(err.response.data.message)
+          
           console.log(err)
           
         
       })},[])  
 
       
-    /*   useEffect(() => {
-    
-        const fetchUserData = async () => {
-          try {
-            
-            const response = await axios.get(`http://localhost:5000/users/userinfo/${userId}`);
-            setimage(response.data.result[0].image); 
-            console.log(response)
-          } catch (error) {
-            console.error("Error fetching user data:", error);
-          }
-        };
-    if (userId){
-      fetchUserData();
-    }
-        
-      }, [userId]);
-      
-console.log(image) */
+ 
 
 const handleDeleteComment = async (userId, comment) => {
   try {
@@ -75,6 +57,16 @@ const handleDeleteComment = async (userId, comment) => {
   }
 };
 
+const handleDeleteUser = async (userId) => {
+  try {
+    
+    await axios.delete(`http://localhost:5000/users/delete/${userId}`);
+    console.log(`User with ID ${userId} deleted successfully.`);
+    
+  } catch (err) {
+    console.error("Error deleting user:", err);
+  }
+};
 
   return (
     <>
@@ -102,6 +94,21 @@ const handleDeleteComment = async (userId, comment) => {
                 </Typography>
                 <Divider style={{ margin: '10px 0' }} />
 
+
+
+
+                <Typography variant="body1" gutterBottom>
+                  <strong>Delete User</strong>
+                
+                <IconButton
+             color="error"
+                            onClick={() => handleDeleteUser(user.id)}
+                            aria-label="delete"
+                            size="small"
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                          </Typography>
                
                 <Typography variant="body1" gutterBottom>
                   <strong>Comments:</strong>

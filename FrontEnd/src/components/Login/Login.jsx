@@ -46,8 +46,14 @@ axios.post("http://localhost:5000/users/login", body ,).then((result)=>{
   dispatch(setLogin(result.data.token))
   dispatch(setUserId(result.data.userId))
   setSuccessMessage("Login successful! Redirecting to Homepage...");
-  setTimeout(() => navgite("/"), 2000); 
-  
+  /* setTimeout(() => navgite("/"), 2000); 
+  navgite(res.data.isAdmin ? "/Admin/dashbored" : "/"); */
+  console.log(result.data.isAdmin)
+  if (result.data.isAdmin){
+    setTimeout(() => navgite("/Admin/dashbored"), 2000)
+  } else {
+    setTimeout(() => navgite("/"), 2000); 
+  }
 
 }).catch((err)=>{
   console.log(err)
@@ -62,7 +68,7 @@ const handleGoogleLogin = (credentialResponse) => {
     .then((res) => {
       dispatch(setLogin(res.data.token));
       dispatch(setUserId(res.data.userId));
-      navigate(res.data.isAdmin ? "/adminPanel" : "/");
+      navgite(res.data.isAdmin ? "/Admin/dashbored" : "/");
     })
     .catch((err) => {
       setError({ api: "Google login failed. Please try again." });

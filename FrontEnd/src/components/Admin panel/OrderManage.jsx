@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from "../../../Redux/reducers/products";
-import { DotLoader} from "react-spinners"; //loading spinner
+import { DotLoader} from "react-spinners"; 
 import axios from 'axios';
 import {
     Box,
