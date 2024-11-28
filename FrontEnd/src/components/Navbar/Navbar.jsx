@@ -87,13 +87,16 @@ const Navbar = () => {
         
         const response = await axios.get(`http://localhost:5000/users/userinfo/${userId}`);
         setimage(response.data.result[0].image); 
+        console.log(response)
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
-
-    fetchUserData();
-  }, []);
+if (userId){
+  fetchUserData();
+}
+    
+  }, [userId]);
 
 
 
@@ -390,7 +393,7 @@ const Navbar = () => {
                   </IconButton>
 
                   
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}
+      {/*             <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}
               size="large"
               edge="end"
               aria-label="account of current user"
@@ -400,7 +403,7 @@ const Navbar = () => {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
+            </IconButton> */}
                   
 
                 </Tooltip>
