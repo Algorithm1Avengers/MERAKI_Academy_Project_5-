@@ -15,44 +15,32 @@ import HotelIcon from '@mui/icons-material/Hotel'
 import MdLocationOnIcon from '@mui/icons-material/LocationOn'; 
 import SendSocketMessages from '../Socket/SendSocketMessages';
 import { FaChartLine, FaStore, FaBed } from "react-icons/fa";
-
 import { useNavigate } from 'react-router-dom';
-
-
 const TouristSpotsDeatils = () => {
   const navigate = useNavigate();
-
   const isLoggedIn=useSelector((initialState)=> initialState.login.isLoggedIn)
   const userId=useSelector((initialState)=> initialState.login.userId)
-
   
 console.log(userId)
-
 const placeName='Amman'
 const {spotname}=useParams()
 const [error, setError] = useState({});
 const [name, setName] = useState("")
 const [comment, setComment] = useState("")
 const [rating, setRating] = useState("")
-
 const [spotInfo, setspotInfo] = useState("")
 const [message, setMessage] = useState("")
 const [spotId, setSpotId] = useState("")
 const [weather, setWeather] = useState("")
-
-
-
   const getSpotByName=async()=>{
     try {
       const result = await axios.get(`http://localhost:5000/touristSpot/name/${spotname}`);
       console.log(result.data)
-
 if (result?.data?.success){
   setspotInfo(result?.data?.result)
   setSpotId(result?.data?.result[0].id)
  setFirstName(result?.data?.result[0].firstname)
  console.log(spotId)
-
 }}catch (error) {
   if (error.response) {
     return setMessage(error.response?.data.message);
@@ -64,21 +52,17 @@ const [firstName, setFirstName] = useState(name)
 useEffect(() => {
   getSpotByName();
 }, []);
-
 function srcset(image, width, height, rows = 1, cols = 1) {
   return {
     src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
     srcSet: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format&dpr=2 2x`,
   };
 }
-
-
 const handleSubmit=()=>{
   console.log("clicked")
   if (isLoggedIn){
     const newError = {};
     if  (!comment) newError.lastName = "comment is required.";
-
     if (Object.keys(newError).length) {
       setError(newError);
       return;
@@ -90,7 +74,6 @@ const body={
   comment,
   rating
 }
-
 axios.post("http://localhost:5000/review", body)
 .then((result) => {
   if (result.status === 200) {
@@ -104,19 +87,15 @@ axios.post("http://localhost:5000/review", body)
   console.log(err);
   setError({ api: "Comment failed. Please try again." });
 });
-
   } else{
     return console.log("Please login to add comment")
   }
 }
-
 console.log(spotInfo[0])
-
 spotInfo[0]?.spot_name
 const getWeather = async (city) => {
   const apiKey = 'f6de574895244be8b1db01f15b083a07';
   const url = `https://api.weatherbit.io/v2.0/current?city=Siena &key=${apiKey}`;
-
   try {
     const response = await fetch(url); 
     const data = await response.json();
@@ -129,13 +108,10 @@ const getWeather = async (city) => {
 useEffect(()=>{
 getWeather()
 },[])
-
 if (!weather) {
   return <p>Loading weather data...</p>; 
 }
-
 const weatherData = weather.data && weather.data[0];
-
  /* console.log(weather.data[0].weather.description) */
  console.log(weatherData.weather.description)
 console.log("spotId",spotId)
@@ -151,8 +127,6 @@ console.log("spotId",spotId)
       src={spotInfo[0]?.virtual_tour_url}
       allowFullScreen
     ></iframe> 
-
-
 <Grid container spacing={3} sx={{ padding: '20px', paddingTop:"8px" }}>
   {[
     {
@@ -258,25 +232,31 @@ console.log("spotId",spotId)
     </Grid>
   ))}
 </Grid>
-
-
     <br />
-    <Typography variant="h4">{spotInfo[0]?.country_spot}</Typography>
-    <br />
-      <Grid container spacing={2}>
-        
-        <Grid item xs={12} md={6}>
-          <Paper sx={{ padding: 2 }}>
-            <Typography variant="body1">{spotInfo[0]?.description}</Typography>
-          </Paper>
-        </Grid>
 
-        
-        <Grid item xs={12} md={6}>
-          <img src={spotInfo[0]?.images[0]} alt={spotInfo[0]?.alt_text} style={{ width: '100%', height: 'auto' }} />
-        </Grid>
-      </Grid>
-      <br />
+
+<Typography variant="h3" sx={{ textAlign: 'center', fontWeight: 'bold', color: '#333', marginBottom: 2 }}>
+  {spotInfo[0]?.country_spot}
+</Typography>
+
+<Grid container spacing={3} sx={{ justifyContent: 'center', px: 2 }}>  {/**/}
+  <Grid item xs={12} md={6}>
+    <Paper sx={{ padding: 3, borderRadius: '8px', boxShadow: 3 }}>
+      <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#555' }}>
+        {spotInfo[0]?.description}
+      </Typography>
+    </Paper>
+  </Grid>
+
+  <Grid item xs={12} md={6}>
+    <img 
+      src={spotInfo[0]?.images[0]} 
+      alt={spotInfo[0]?.alt_text} 
+      style={{ width: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }} 
+    />
+  </Grid>
+</Grid>
+
 
    <h1>Photogallery</h1>
       <ImageList sx={{ width: '100%', height: 'auto', display: 'flex', flexWrap: 'wrap', gap: '15px' }} rowHeight={200} gap={8}>
@@ -337,7 +317,6 @@ console.log("spotId",spotId)
               </Button>
             </Paper>
           </Box>
-
          
           <Box sx={{ flex: 1 }}>
             {spotInfo[0] && spotInfo[0].reviews.map((review, index) => (
@@ -358,14 +337,8 @@ console.log("spotId",spotId)
             ))}
           </Box>
         </Box>
-
-
     </>
   );
 };
    
-
-
-
-
 export default TouristSpotsDeatils 
