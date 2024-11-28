@@ -235,58 +235,96 @@ console.log("spotId",spotId)
     <br />
 
 
-<Typography variant="h3" sx={{ textAlign: 'center', fontWeight: 'bold', color: '#333', marginBottom: 2 }}>
+
+  <Typography variant="h3" sx={{ textAlign: 'center', fontWeight: 'bold', color: '#333', marginBottom: 2 }}>
   {spotInfo[0]?.country_spot}
 </Typography>
-
-<Grid container spacing={3} sx={{ justifyContent: 'center', px: 2 }}>  {/**/}
-  <Grid item xs={12} md={6}>
-    <Paper sx={{ padding: 3, borderRadius: '8px', boxShadow: 3 }}>
+  
+<Grid container spacing={3} sx={{ justifyContent: 'center', px: 2, alignItems: 'stretch' }}>
+  {/* Place Description */}
+  <Grid item xs={12} md={6} sx={{ display: 'flex' }}>
+    <Paper sx={{ padding: 3, borderRadius: '8px', boxShadow: 3, width: '100%', display: 'flex', alignItems: 'center' }}>
       <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#555' }}>
         {spotInfo[0]?.description}
       </Typography>
     </Paper>
   </Grid>
-
+  {/* Place Image */}
   <Grid item xs={12} md={6}>
     <img 
       src={spotInfo[0]?.images[0]} 
       alt={spotInfo[0]?.alt_text} 
-      style={{ width: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }} 
+      style={{ width: '100%', height: '100%', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', objectFit: 'cover' }} 
     />
   </Grid>
 </Grid>
 
 
-   <h1>Photogallery</h1>
-      <ImageList sx={{ width: '100%', height: 'auto', display: 'flex', flexWrap: 'wrap', gap: '15px' }} rowHeight={200} gap={8}>
-        {spotInfo[0]&& spotInfo[0].images.map((image, index) => (
-          <ImageListItem key={image.id} sx={{ width: 'calc(33.333% - 10px)', height: 'auto' }}>
-            <img
-              {...srcset(image, 250, 200, 1, 1)}
-              alt={image.alt_text}
-              loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }} 
-            />
-            <ImageListItemBar
-              sx={{
-                background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 100%)',
-               
-              }}
-              title={image.alt_text}
-               position="top"
-              actionIcon={
-                <IconButton sx={{ color: 'white' }} aria-label={`star ${image.alt_text}`}>
-                  <StarBorderIcon />
-                </IconButton>
-              }
-              actionPosition="left"
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>   
-      <br/>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 4 }}>
+<Box
+  sx={{
+    margin: '0 auto',
+    padding: '0 20px',
+    maxWidth: '100%',
+  }}
+>
+  <Typography
+    variant="h4"
+    component="h3" 
+    sx={{
+      textAlign: 'center', 
+      fontWeight: 'bold', 
+      color: '#333', 
+      marginTop: '40px', 
+      marginBottom: '10px', 
+    }}
+  >
+    Photogallery
+  </Typography>
+  
+  <ImageList
+    sx={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '15px',
+      justifyContent: 'space-between',
+    }}
+    rowHeight={200}
+  >
+    {spotInfo[0] && spotInfo[0].images.map((image, index) => (
+      <ImageListItem key={image.id} sx={{ flex: '1 1 calc(33.333% - 15px)', maxWidth: 'calc(33.333% - 15px)' }}>
+        <img
+          {...srcset(image, 250, 200, 1, 1)}
+          alt={image.alt_text}
+          loading="lazy"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            borderRadius: '8px',
+          }}
+        />
+        <ImageListItemBar
+          sx={{
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0) 100%)',
+          }}
+          title={image.alt_text}
+          position="top"
+          actionIcon={
+            <IconButton sx={{ color: 'white' }} aria-label={`star ${image.alt_text}`}>
+              <StarBorderIcon />
+            </IconButton>
+          }
+          actionPosition="left"
+        />
+      </ImageListItem>
+    ))}
+  </ImageList>
+  <br />
+</Box>
+
+
+
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 4, px: 2 }}>
           
           <Box sx={{ flex: 1, paddingRight: 2 }}>
             <Paper sx={{ padding: 3 }}>
