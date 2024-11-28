@@ -40,7 +40,7 @@ import Header from './components/Admin panel/Header'
 
 import Orders from "./components/Orders/Orders"
 import Users from './components/Admin panel/Users'
-
+import Charts from "./components/Admin panel/Charts/Charts"
 function App() {
 
 
@@ -69,7 +69,7 @@ function App() {
     <Route path="/Register" element={<Register/>}/>
     <Route path="/Login" element={<Login/>}/>
     <Route path="/adminPanel" element={<AdminPanel/>} />
-
+    <Route path="/adminPanel/Charts" element={<Charts/>} />
     <Route path="/TouristSpots/:categoryId" element={<TouristSpots/>} />
     <Route path="/TouristSpots/:categoryId/TouristSpots-Detailes/:spotname" element={<TouristSpotsDeatils/>} />
     <Route path="/Products/:category_id" element={<Products/>} />
