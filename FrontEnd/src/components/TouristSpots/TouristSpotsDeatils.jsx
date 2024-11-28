@@ -141,6 +141,7 @@ const weatherData = weather.data && weather.data[0];
 console.log("spotId",spotId)
 
 
+
   return (
     <>
     <SendSocketMessages/>
