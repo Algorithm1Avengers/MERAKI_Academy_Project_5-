@@ -111,7 +111,7 @@ function App() {
 
     <Route path="/Favourite" element={<Favourite />} />
     <Route path="/Admin/dashbored" element={<Dashboard />} />
-    <Route path="/Admin/sidebar" element={<Sidebar />} />
+     <Route path="/Admin/sidebar" element={<Sidebar />} /> 
     <Route path="/Admin/Header" element={<Header />} />
     <Route path="/Admin/Orders" element={<OrderManage/>} />
     <Route path="/Admin/Products" element={<ProductManage/>} />

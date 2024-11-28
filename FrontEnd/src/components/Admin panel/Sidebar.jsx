@@ -1,4 +1,4 @@
- import { Link } from 'react-router-dom';
+  import { Link } from 'react-router-dom';
 import { Drawer, List, ListItem, ListItemText, Divider } from '@mui/material';
 import { styled } from '@mui/material/styles'
 const Sidebar = () => {
@@ -11,11 +11,13 @@ const Sidebar = () => {
         '& .MuiDrawer-paper': {
           width: 240,
           boxSizing: 'border-box',
-        },
+          marginTop: '80px',
+        }, 
       }}
     >
-      <List>
-        <ListItem button component={Link} to="/dashboard">
+      
+      <List sx={{mt:10}}>
+        <ListItem button component={Link} to="/Admin/dashbored">
           <ListItemText primary="Dashboard" />
         </ListItem>
         <ListItem button component={Link} to="/Admin/products">
@@ -31,7 +33,7 @@ const Sidebar = () => {
       <Divider />
     </Drawer>
   );
-};
+}; 
 
-export default Sidebar;
+export default Sidebar; 
  
