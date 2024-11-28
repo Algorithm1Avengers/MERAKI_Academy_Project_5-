@@ -134,16 +134,13 @@ if (!weather) {
   return <p>Loading weather data...</p>; 
 }
 
-
 const weatherData = weather.data && weather.data[0];
-
 
  /* console.log(weather.data[0].weather.description) */
  console.log(weatherData.weather.description)
-
-
-
 console.log("spotId",spotId)
+
+
   return (
     <>
     <SendSocketMessages/>
@@ -153,6 +150,7 @@ console.log("spotId",spotId)
       src={spotInfo[0]?.virtual_tour_url}
       allowFullScreen
     ></iframe> 
+
 
 <Grid container spacing={3} sx={{ padding: '20px', paddingTop:"8px" }}>
   {[
@@ -169,13 +167,13 @@ console.log("spotId",spotId)
     {
       title: 'Site Visits',
       description: 'Monitor visitors count for this location.',
-      content: `${spotInfo[0]?.views || 0} visitors so far.`,
+      content: `${spotInfo[0]?.views || 0} visitors this year.`,
       icon: <FaChartLine size={50} color="#4CAF50" />,
       gradient: 'linear-gradient(135deg, #F0FFF4, #C7EED9)',
       color: '#4CAF50',
     },
     {
-      title: 'E-Commerce',
+      title: 'Souvenir Shop',
       description: 'Browse and shop for local souvenirs.',
       content: (
         <Button
@@ -259,6 +257,7 @@ console.log("spotId",spotId)
     </Grid>
   ))}
 </Grid>
+
 
     <br />
     <Typography variant="h4">{spotInfo[0]?.country_spot}</Typography>
