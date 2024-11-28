@@ -24,6 +24,12 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
+/* */
+import MarketIcon from '@mui/icons-material/Storefront';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ExploreIcon from '@mui/icons-material/Explore';
+import InfoIcon from '@mui/icons-material/Info';
+
 
 import ReceiveSocketMessages from "../Socket/ReciveSocketMessages";
 import { setLogout } from "../../../Redux/reducers/login";
@@ -32,6 +38,13 @@ const pages = ["Top Spots", "Market", "Cart", "About Us"];
 const settings = ["Account", "Favourites", "Orders", "Logout"];
 
 const Navbar = () => {
+  
+  const cart = useSelector((state) => state.cart.items);
+  // Calculating the total number of items in the cart
+  const totalItems = Array.isArray(cart)
+    ? cart.reduce((acc, item) => acc + item.quantity, 0)
+    : 0;
+
   const userId=useSelector((initialState)=> initialState.login.userId)
   const dispatch=useDispatch()
   const [newMessages, setNewMessages] = useState(false); 
@@ -115,7 +128,7 @@ if (userId){
     navigate("/TouristSpots")
   };
   const navigateToMarket=()=>{
-    navigate("/Products")
+    navigate("/Market")
   };
 
   const navigateToCart=()=>{
@@ -136,7 +149,7 @@ if (userId){
   };
 
   const navigateToOrders = () => {
-    navigate("/Orders");
+    navigate("/my-PreviousOrders");
     handleCloseUserMenu(); 
   };
 
@@ -196,17 +209,46 @@ if (userId){
     setAnchorElMail(null); 
   };
   console.log(image)
+//background: "linear-gradient(90deg, #ff8a00, #fc2976)"
+
 
   return (
-    <AppBar position="relative" sx={{ backgroundColor: "white", color: "black", mb: 2 }}>
+    <AppBar position="fixed" sx={{   background: "linear-gradient(90deg, #ff8a00, #fc2976)"
+      , color: "black", mb: 2 , height: "66px" , margin:"0px", zIndex:"4"}}>
+
+            {/* Video background */}
+          {/*  <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1, 
+        }}
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          style={{
+            objectFit: "cover", 
+            width: "140%",
+            height: "200%",
+          }}
+        >
+          <source src="./src/assets/cloud2.mp4" type="video/mp4" />
+        </video>
+      </Box>*/}
+
     <Container maxWidth="xl">
       <Toolbar disableGutters>
         <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
           <img
             id="logo"
-            src="./src/assets/Screenshot 2024-11-14 201237.png"
+            src="/puplic-logo.png"
             alt="Logo"
-            style={{ height: "70px", width: "200px" }}
+            style={{ height: "55px", width: "160px" }}
             onClick={() => navigate("/")}
           />
         </Box>
@@ -270,6 +312,12 @@ if (userId){
                     ? navigateToAbout
                     : handleCloseNavMenu
                 }
+                sx={{
+                  mx: 3,
+                  color: "black",
+                  display: "flex",
+                  alignItems: "center",
+                }}
               >
                 <Typography>{page}</Typography>
               </MenuItem>
@@ -280,6 +328,7 @@ if (userId){
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
           {pages.map((page) => (
             <Button
+            className="mooon"
               key={page}
               onClick={
                 page === "Top Spots"
@@ -292,14 +341,39 @@ if (userId){
                   ? navigateToAbout
                   : handleCloseNavMenu
               }
-              sx={{ mx: 3, color: "black", display: "block" }}
+              sx={{ mx: 9.9, color: "black", display: "block" }}
             >
-              {page}
+            
+            {page === "Cart" ? (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Badge badgeContent={totalItems} color="error">
+            <ShoppingCartIcon className="moon-icon" sx={{ order: -1 }} />
+          </Badge>
+          <Typography>Cart</Typography>
+        </Box>
+      ) : page === "Market" ? (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <MarketIcon className="moon-icon"/>
+          <Typography>Market</Typography>
+        </Box>
+      ) : page === "Top Spots" ? (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <ExploreIcon className="moon-icon"/>
+          <Typography>Top Spots</Typography>
+        </Box>
+      ) : page === "About Us" ? (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <InfoIcon className="moon-icon"/>
+          <Typography>About Us</Typography>
+        </Box>
+      ) : (
+        page
+      )}        
             </Button>
           ))}
         </Box>
 
-        <Box>
+{/*       <Box>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -307,6 +381,7 @@ if (userId){
             <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
           </Search>
 </Box>
+*/} 
           <Box sx={{ flexGrow: 0 }}>
             {isLoggedIn ? (
               <>
@@ -386,7 +461,7 @@ if (userId){
               </Menu>
             </>
           ) : (
-            <Button onClick={handleSignInClick} sx={{ color: "black" }}>
+            <Button onClick={handleSignInClick} sx={{ color: "white" }}>
               Sign In
             </Button>
           )}

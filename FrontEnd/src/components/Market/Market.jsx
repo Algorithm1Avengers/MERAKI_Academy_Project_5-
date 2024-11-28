@@ -6,7 +6,7 @@ import axios from 'axios';
 import { FaHeart, FaDollarSign } from 'react-icons/fa';
 import { MdLocalFireDepartment } from 'react-icons/md';
 import { DotLoader } from "react-spinners"; 
-//import './products.css'; 
+//import './Market.css'; 
 
 
 const Market = () => {
@@ -25,6 +25,7 @@ const Market = () => {
         axios.get(`http://localhost:5000/products`) 
             .then((response) => {
                 dispatch(setProducts(response.data.products));
+                console.log("response.data.products",response.data.products)
             })
             .catch((error) => {
                 console.error('Error fetching products:', error);
@@ -56,7 +57,7 @@ const Market = () => {
                 </div>
             ) : products && products.length > 0 ? (
                 products.map((product) => (
-                    <div key={product.id} className="food-card">
+                    <div key={product.id} className="product-card">
                         
                         <div className="img-wrapper">
                             <img
@@ -73,7 +74,7 @@ const Market = () => {
                         
                         <div className="details">
                             <h3>{product.name}</h3>
-                            <p className="calori">
+                            <p className="price">
                                 <FaDollarSign className="price-icon" />
                                 Price: {product.price} JD
                             </p>

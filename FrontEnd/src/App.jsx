@@ -13,15 +13,13 @@ import ProductDetailes from './components/ProductsDetailes/ProductDetailes'
 import CartPage from './components/Cart/CartPage'
 import OrderConfirmtion from './components/Orders/OrderConfirmtion'
 import CheckOutpage from './components/CheckoutPage/CheckOutpage'
-
-import About from "./components/About/About"
-
-
 import UserOrders from './components/Orders/userorders'
 import Market from './components/Market/Market'
 import FavoritesProducts from './components/Favourite/FavoritesProducts'
 import OrderManage from "./components/Admin panel/OrderManage"
 import ProductManage from "./components/Admin panel/ProductManage"
+
+import About from "./components/About/About"
 
 
 import SocketMessages from './components/Socket/SocketMessages'
@@ -62,7 +60,9 @@ function App() {
 
     
     <SocketMessages>
-     <Navbar/> 
+    
+    <Navbar/> 
+
     <Routes>
     <Route path="/Navbar" element={<Navbar/>}/>
     <Route path="/" element={<HomePage/>}/>
@@ -72,18 +72,16 @@ function App() {
     <Route path="/adminPanel/Charts" element={<Charts/>} />
     <Route path="/TouristSpots/:categoryId" element={<TouristSpots/>} />
     <Route path="/TouristSpots/:categoryId/TouristSpots-Detailes/:spotname" element={<TouristSpotsDeatils/>} />
-    <Route path="/Products/:category_id" element={<Products/>} />
     <Route path="/Products/Detailes/:product_id" element={<ProductDetailes/>} />
     <Route path="/my-orders" element={<Orders/>} />
     <Route path="/Orders/:id" element={<OrderConfirmtion/>} />
     <Route path="/checkout" element={<CheckOutpage/>} />
-    <Route path="/Products/:touristSpotsid" element={<Products/>} />
     <Route path="/products/details/:productId" element={<ProductDetailes/>} />
 
     <Route path="/TouristSpots" element={<TouristSpots/>} />
     <Route path="/TouristSpots-Detailes" element={<TouristSpotsDeatils/>} />
 
-    <Route path="/Products/:touristSpotsid" element={<Products/>} />
+    <Route path="/products/:spotId" element={<Products/>} />
     <Route path="/products/details/:productId" element={<ProductDetailes/>} />
     <Route path="/cart" element={<CartPage />} />
     <Route path="/checkout" element={<CheckOutpage/>} />
@@ -111,7 +109,7 @@ function App() {
 
     <Route path="/Favourite" element={<Favourite />} />
     <Route path="/Admin/dashbored" element={<Dashboard />} />
-    <Route path="/Admin/sidebar" element={<Sidebar />} />
+     <Route path="/Admin/sidebar" element={<Sidebar />} /> 
     <Route path="/Admin/Header" element={<Header />} />
     <Route path="/Admin/Orders" element={<OrderManage/>} />
     <Route path="/Admin/Products" element={<ProductManage/>} />
