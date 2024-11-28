@@ -6,7 +6,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { TextField, Button, Typography, Rating, Box, Paper,Grid, Card, CardContent } from "@mui/material"
+import { TextField, Button, Typography, Rating, Box, Paper,Grid, Card, CardContent,Avatar } from "@mui/material"
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { useParams } from 'react-router-dom';
 import { WiDaySunny  } from 'react-icons/wi'; 
@@ -32,6 +32,7 @@ const [spotInfo, setspotInfo] = useState("")
 const [message, setMessage] = useState("")
 const [spotId, setSpotId] = useState("")
 const [weather, setWeather] = useState("")
+const [image, setimage] = useState("")
   const getSpotByName=async()=>{
     try {
       const result = await axios.get(`http://localhost:5000/touristSpot/name/${spotname}`);
@@ -40,6 +41,7 @@ if (result?.data?.success){
   setspotInfo(result?.data?.result)
   setSpotId(result?.data?.result[0].id)
  setFirstName(result?.data?.result[0].firstname)
+ 
  console.log(spotId)
 }}catch (error) {
   if (error.response) {
@@ -58,6 +60,32 @@ function srcset(image, width, height, rows = 1, cols = 1) {
     srcSet: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format&dpr=2 2x`,
   };
 }
+
+
+
+useEffect(() => {
+    
+  const fetchUserData = async () => {
+    try {
+      
+      const response = await axios.get(`http://localhost:5000/users/userinfo/${userId}`);
+      setimage(response.data.result[0].image); 
+      console.log(response)
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+if (userId){
+fetchUserData();
+}
+  
+}, [userId]);
+
+
+
+
+
+
 const handleSubmit=()=>{
   console.log("clicked")
   if (isLoggedIn){
@@ -241,7 +269,7 @@ console.log("spotId",spotId)
 </Typography>
   
 <Grid container spacing={3} sx={{ justifyContent: 'center', px: 2, alignItems: 'stretch' }}>
-  {/* Place Description */}
+ 
   <Grid item xs={12} md={6} sx={{ display: 'flex' }}>
     <Paper sx={{ padding: 3, borderRadius: '8px', boxShadow: 3, width: '100%', display: 'flex', alignItems: 'center' }}>
       <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#555' }}>
@@ -249,7 +277,7 @@ console.log("spotId",spotId)
       </Typography>
     </Paper>
   </Grid>
-  {/* Place Image */}
+  
   <Grid item xs={12} md={6}>
     <img 
       src={spotInfo[0]?.images[0]} 
@@ -358,20 +386,34 @@ console.log("spotId",spotId)
          
           <Box sx={{ flex: 1 }}>
             {spotInfo[0] && spotInfo[0].reviews.map((review, index) => (
-              <Paper key={index} sx={{ padding: 2, marginBottom: 2, borderRadius: 2, boxShadow: 2 }}>
-                <Typography variant="h6" component="div">
-                  {review.first_name}
-                </Typography>
-                <Typography variant="body1" component="p" sx={{ marginBottom: 1 }}>
-                  {review.comment}
-                </Typography>
-                <Box display="flex" justifyContent="space-between" alignItems="center">
-                  <Rating name={`rating-${index}`} value={review.rating} readOnly />
-                  <Typography variant="body2" color="textSecondary">
-                    {review.rating} / 5
-                  </Typography>
-                </Box>
-              </Paper>
+             <Paper key={index} sx={{ padding: 2, marginBottom: 2, borderRadius: 2, boxShadow: 2, position: 'relative' }}>
+             
+             <Avatar
+               alt="Profile Picture"
+               src={image || "https://via.placeholder.com/120"} 
+               sx={{
+                 position: 'absolute',
+                 top: 10, 
+                 right: 10, 
+                 width: 40,  
+                 height: 40, 
+                 border: "2px solid #D1B28E", 
+               }}
+             />
+            
+             <Typography variant="h6" component="div">
+               {review.first_name}
+             </Typography>
+             <Typography variant="body1" component="p" sx={{ marginBottom: 1 }}>
+               {review.comment}
+             </Typography>
+             <Box display="flex" justifyContent="space-between" alignItems="center">
+               <Rating name={`rating-${index}`} value={review.rating} readOnly />
+               <Typography variant="body2" color="textSecondary">
+                 {review.rating} / 5
+               </Typography>
+             </Box>
+           </Paper>
             ))}
           </Box>
         </Box>
