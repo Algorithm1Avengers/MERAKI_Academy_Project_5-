@@ -10,19 +10,22 @@ import './Products.css';
 import { DotLoader} from "react-spinners"; //loading spinner
 
 const Products = () => {
+    const {  spotId } = useParams();
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const products = useSelector((state) => state.products.products);
     const isLoading = useSelector((state) => state.products.isLoading);  
     const favorites = useSelector((state) => state.products.favorites);
-    let touristSpotsid = 1;
+
 
     useEffect(() => {
-        if (touristSpotsid) {  
+        console.log("spotId in Products",spotId)
+        if (spotId) {  
             // Start loading
             dispatch(setLoading(true));
 
-            axios.get(`http://localhost:5000/products/${touristSpotsid}`)  
+            axios.get(`http://localhost:5000/products/${spotId}`)  
                 .then((response) => {
                     dispatch(setProducts(response.data.products)); 
                 })
@@ -35,7 +38,7 @@ const Products = () => {
                     dispatch(setLoading(false));
                 });
         }
-    }, [touristSpotsid, dispatch]); // Re-run when touristSpotsid changes
+    }, [spotId, dispatch]); // Re-run when touristSpotsid changes
 
     // Navigate to product details when the image is clicked
     const handleproductClick = (productId) => {
