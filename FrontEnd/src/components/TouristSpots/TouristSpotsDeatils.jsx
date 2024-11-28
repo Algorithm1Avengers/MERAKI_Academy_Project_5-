@@ -14,6 +14,7 @@ import { FaShoppingCart } from 'react-icons/fa'
 import HotelIcon from '@mui/icons-material/Hotel'
 import MdLocationOnIcon from '@mui/icons-material/LocationOn'; 
 import SendSocketMessages from '../Socket/SendSocketMessages';
+import { FaChartLine, FaStore, FaBed } from "react-icons/fa";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -152,74 +153,113 @@ console.log("spotId",spotId)
       src={spotInfo[0]?.virtual_tour_url}
       allowFullScreen
     ></iframe> 
-    <Grid container spacing={2}>
-      
-        <Grid item xs={12} md={3}>
-          <Card sx={{ height: '100%', position: 'relative' }}>
-            <CardContent>
-              <Typography variant="h5" gutterBottom>Weather</Typography>
-              {weatherData ? (
-                <>
-                  <Typography variant="body1">{weatherData.weather.description}</Typography>
-                  <Typography variant="body1">{weatherData.app_temp}°C </Typography>
-                </>
-              ) : (
-                <Typography variant="body1">Loading...</Typography>
-              )}
-            </CardContent>
-            
-            <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-              <WiDaySunny size={30} color="#FF9800" />
-            </Box>
-          </Card>
-        </Grid>
 
-       
-        <Grid item xs={12} md={3}>
-          <Card sx={{ height: '100%', position: 'relative' }}>
-            <CardContent>
-              <Typography variant="h5" gutterBottom>Site Visits</Typography>
-              <Typography variant="body1"> {spotInfo[0]?.views}.</Typography>
-            </CardContent>
-            
-            <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-              <MdLocationOnIcon size={30} color="#4CAF50" />
-            </Box>
-          </Card>
-        </Grid>
+<Grid container spacing={3} sx={{ padding: '20px', paddingTop:"8px" }}>
+  {[
+    {
+      title: 'Weather',
+      description: 'Stay updated with live weather conditions.',
+      content: weatherData
+        ? `${weatherData.weather.description}, ${weatherData.app_temp}°C`
+        : 'Loading weather data...',
+      icon: <WiDaySunny size={50} color="#FF9800" />,
+      gradient: 'linear-gradient(135deg, #FFF5E5, #FFD9B2)',
+      color: '#FF9800',
+    },
+    {
+      title: 'Site Visits',
+      description: 'Monitor visitors count for this location.',
+      content: `${spotInfo[0]?.views || 0} visitors so far.`,
+      icon: <FaChartLine size={50} color="#4CAF50" />,
+      gradient: 'linear-gradient(135deg, #F0FFF4, #C7EED9)',
+      color: '#4CAF50',
+    },
+    {
+      title: 'E-Commerce',
+      description: 'Browse and shop for local souvenirs.',
+      content: (
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: '#2196F3',
+            color: '#fff',
+            '&:hover': { backgroundColor: '#1976D2' },
+          }}
+          onClick={() => navigate(`/products/${spotId}`)}
+        >
+          Shop Now
+        </Button>
+      ),
+      icon: <FaStore size={50} color="#2196F3" />,
+      gradient: 'linear-gradient(135deg, #E3F4FF, #C0E1FF)',
+      color: '#2196F3',
+    },
+    {
+      title: 'Book a Stay',
+      description: 'Search and book your perfect stay.',
+      content: (
+        <Button
+          variant="contained"
+          href={`https://www.booking.com/searchresults.html?ss=${spotInfo[0]?.country_spot}`}
+          target="_blank"
+          sx={{
+            backgroundColor: '#9C27B0',
+            color: '#fff',
+            '&:hover': { backgroundColor: '#7B1FA2' },
+          }}
+        >
+          Find Hotels
+        </Button>
+      ),
+      icon: <FaBed size={50} color="#9C27B0" />,
+      gradient: 'linear-gradient(135deg, #F7E6FF, #E1C6FF)',
+      color: '#9C27B0',
+    },
+  ].map(({ title, description, content, icon, gradient, color }, index) => (
+    <Grid item xs={12} md={3} key={index}>
+      <Card
+        sx={{
+          height: '100%',
+          position: 'relative',
+          background: gradient,
+          color: color,
+          borderRadius: '16px',
+          boxShadow: '0px 6px 30px rgba(0, 0, 0, 0.15)',
+          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          overflow: 'hidden',
+          '&:hover': {
+            transform: 'translateY(-8px)',
+            boxShadow: '0px 10px 35px rgba(0, 0, 0, 0.2)',
+          },
+        }}
+      >
+        <CardContent>
+          <Typography variant="h5" fontWeight="600" gutterBottom>
+            {title}
+          </Typography>
+          <Typography variant="body2" sx={{ marginBottom: '10px', fontSize: '14px' }}>
+            {description}
+          </Typography>
+          <Typography variant="body1" fontWeight="400" sx={{ fontSize: '16px' }}>
+            {content}
+          </Typography>
+        </CardContent>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 10,
+            right: 10,
+            transition: 'transform 0.3s ease',
+            '&:hover': { transform: 'scale(1.3)' },
+          }}
+        >
+          {icon}
+        </Box>
+      </Card>
+    </Grid>
+  ))}
+</Grid>
 
-       
-        <Grid item xs={12} md={3}>
-          <Card sx={{ height: '100%', position: 'relative' }}>
-            <CardContent>
-              <Typography variant="h5" gutterBottom>E-Commerce</Typography>
-              <Button variant="contained" target="_blank"
-              onClick={() =>{
-                console.log("spotId in TouristSpot:", spotId); navigate(`/products/${spotId}`);
-              }}
-              >Shop Now</Button>
-            </CardContent>
-           
-            <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-              <FaShoppingCart size={30} color="#2196F3" />
-            </Box>
-          </Card>
-        </Grid>
-
-       
-        <Grid item xs={12} md={3}>
-          <Card sx={{ height: '100%', position: 'relative' }}>
-            <CardContent>
-              <Typography variant="h5" gutterBottom>Book a Stay</Typography>
-              <Button variant="contained" href={`https://www.booking.com/searchresults.html?ss=${spotInfo[0]?.country_spot}`} target="_blank">Find Hotels</Button>
-            </CardContent>
-            
-            <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-              <HotelIcon  size={30} color="#9C27B0" />
-            </Box>
-          </Card>
-        </Grid>
-      </Grid>
     <br />
     <Typography variant="h4">{spotInfo[0]?.country_spot}</Typography>
     <br />
