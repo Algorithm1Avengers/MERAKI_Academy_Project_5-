@@ -36,3 +36,48 @@
     margin-top: 20px;
   }
   
+
+  .user-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .user-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Image styling */
+  .user-image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;  /* Ensures the image covers the area without distortion */
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%; 
+  }
+  
+  /* Style for comment section */
+  .comments-list {
+    margin-top: 10px;
+  }
+  
+  .comment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .comment-text {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .comment-item .MuiIconButton-root {
+    padding: 5px;
+  }

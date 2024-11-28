@@ -42,10 +42,10 @@ const Dashboard = () => {
         <ListItem button component={Link} to="/dashboard">
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button component={Link} to="/products">
+        <ListItem button component={Link} to="/Admin/products">
           <ListItemText primary="Products" />
         </ListItem>
-        <ListItem button component={Link} to="/Admin/Order">
+        <ListItem button component={Link} to="/Admin/Orders">
           <ListItemText primary="Orders" />
         </ListItem>
         <ListItem button component={Link} to="/Admin/users">
