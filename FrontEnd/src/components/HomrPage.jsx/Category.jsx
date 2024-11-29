@@ -59,7 +59,7 @@ const categories = () => {
                     src={elem.image_url}
                     className="card-img-top"
                     style={{ height: "25rem", width: "100%", objectFit: "cover" }}
-                    alt={elem.category_name} // Add alt text for accessibility
+                    alt={elem.category_name} 
                   />
                   <div className="card-body" style={{ position: "absolute", bottom: 0, width: "100%", backgroundColor: "rgba(0, 0, 0, 0.3)", color: "#fff", padding: "1rem" }}>
                     <Link className="mx-auto" to={`/TouristSpots/${elem.id}`} style={{ textDecoration: "none", fontWeight: "bold", alignSelf: "center" }}>
