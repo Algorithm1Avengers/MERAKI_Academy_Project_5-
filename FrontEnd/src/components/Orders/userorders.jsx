@@ -12,13 +12,13 @@ import {
     TableRow,
     IconButton,
     Collapse,
-    Snackbar,
     Paper,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { DotLoader} from "react-spinners"; //loading spinner
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';  
+import CancelIcon from '@mui/icons-material/Cancel';            
+import { DotLoader } from "react-spinners"; // Loading spinner
 import './userorders.css';
-
 
 const UserOrders = () => {
     const token = useSelector((state) => state.login.token);
@@ -27,7 +27,6 @@ const UserOrders = () => {
     const [error, setError] = useState(null);
     const [expandedOrderId, setExpandedOrderId] = useState(null);
 
-
     const fetchOrders = async () => {
         try {
             const response = await axios.get('http://localhost:5000/orders', {
@@ -35,6 +34,7 @@ const UserOrders = () => {
             });
             if (response.data.success) {
                 setOrders(response.data.orders);
+                console.log("response.data.orders",response.data.orders);
             } 
             else {
                 setError('Failed to fetch orders.');
@@ -49,16 +49,13 @@ const UserOrders = () => {
         }
     };
 
-
     useEffect(() => {
         fetchOrders();
     }, []);
 
-
     const handleToggleDetails = (orderId) => {
         setExpandedOrderId((prevOrderId) => (prevOrderId === orderId ? null : orderId));
     };
-
 
     return (
         <Box sx={{ display: 'flex', height: '100vh' }}>
@@ -70,18 +67,18 @@ const UserOrders = () => {
                 ) : (
                     <>
                         <Box sx={{ height: '30px' }} />
-                        <Typography variant="h4" gutterBottom className="manage-title">
-                        </Typography>
+                        <Typography variant="h4" gutterBottom className="manage-title" />
                         <Typography variant="h5.4" align="center" gutterBottom className='Your-Orders-h2 manage-title'>Your Orders</Typography>
-                        <TableContainer component={Paper} className="order-table-container">
-                            <Table className="order-table order-items-table">
+                        <TableContainer component={Paper} className="order-table-container" sx={{ overflowX: 'auto' }}>
+                            <Table className="order-table order-items-table" sx={{ tableLayout: 'fixed', width: '100%' }}>
                                 <TableHead className="table-header">
                                     <TableRow>
-                                        <TableCell>Order ID</TableCell>
-                                        <TableCell>Order Date</TableCell>
-                                        <TableCell>Total Amount</TableCell>
-                                        <TableCell>Is Delivered</TableCell>
-                                        <TableCell>Details</TableCell>
+                                        <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>Order ID</TableCell>
+                                        <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>Order Date</TableCell>
+                                        <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>Total Amount</TableCell>
+                                        <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>Payment Method</TableCell>
+                                        <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>Is Delivered</TableCell>
+                                        <TableCell sx={{ padding: '8px 16px', textAlign: 'center' }}>Details</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -89,46 +86,46 @@ const UserOrders = () => {
                                         orders.map((order) => (
                                             <React.Fragment key={order.id}>
                                                 <TableRow className="table-row">
-                                                    <TableCell>{order.id}</TableCell>
-                                                    <TableCell>
+                                                    <TableCell sx={{ textAlign: 'center' }}>{order.id}</TableCell>
+                                                    <TableCell sx={{ textAlign: 'center' }}>
                                                         {new Date(order.created_at).toLocaleDateString('en-US')}
                                                     </TableCell>
-                                                    <TableCell>${order.total_amount}</TableCell>
-                                                    <TableCell>
-                                                        {order.isDelivered ? 'Yes' : 'No'}
+                                                    <TableCell sx={{ textAlign: 'center' }}>${order.total_amount}</TableCell>
+                                                    <TableCell sx={{ textAlign: 'center' }}>{order.payment_method}</TableCell>
+                                                    <TableCell sx={{ textAlign: 'center' }}>
+                                                        {order.is_delivered ? (
+                                                            <CheckCircleIcon sx={{ color: 'green', fontSize: 30 }} />
+                                                        ) : (
+                                                            <CancelIcon sx={{ color: 'red', fontSize: 30 }} />
+                                                        )}
                                                     </TableCell>
-                                                    <TableCell>
-                                                        <IconButton
-                                                            onClick={() => handleToggleDetails(order.id)}
-                                                            className="expand-button"
-                                                        >
+
+                                                    <TableCell sx={{ textAlign: 'center' }}>
+                                                        <IconButton onClick={() => handleToggleDetails(order.id)} className="expand-button">
                                                             <ExpandMoreIcon />
                                                         </IconButton>
                                                     </TableCell>
                                                 </TableRow>
+
                                                 {/* Details */}
                                                 <TableRow>
-                                                    <TableCell colSpan={5}>
-                                                        <Collapse
-                                                            in={expandedOrderId === order.id}
-                                                            timeout="auto"
-                                                            unmountOnExit
-                                                        >
+                                                    <TableCell colSpan={6}>
+                                                        <Collapse in={expandedOrderId === order.id} timeout="auto" unmountOnExit>
                                                             <Box sx={{ margin: 1 }}>
                                                                 <Table size="small">
                                                                     <TableHead>
                                                                         <TableRow>
-                                                                            <TableCell>Product Image</TableCell>
-                                                                            <TableCell>Product ID</TableCell>
-                                                                            <TableCell>Product Name</TableCell>
-                                                                            <TableCell>Quantity</TableCell>
-                                                                            <TableCell>Price</TableCell>
+                                                                            <TableCell sx={{ textAlign: 'center' }}>Product Image</TableCell>
+                                                                            <TableCell sx={{ textAlign: 'center' }}>Product ID</TableCell>
+                                                                            <TableCell sx={{ textAlign: 'center' }}>Product Name</TableCell>
+                                                                            <TableCell sx={{ textAlign: 'center' }}>Quantity</TableCell>
+                                                                            <TableCell sx={{ textAlign: 'center' }}>Price</TableCell>
                                                                         </TableRow>
                                                                     </TableHead>
                                                                     <TableBody>
                                                                         {order.items.map((item) => (
                                                                             <TableRow key={item.id}>
-                                                                                <TableCell>
+                                                                                <TableCell sx={{ textAlign: 'center' }}>
                                                                                     <img
                                                                                         src={item.image}
                                                                                         alt={item.name}
@@ -138,17 +135,14 @@ const UserOrders = () => {
                                                                                             height: '60px',
                                                                                             objectFit: 'cover',
                                                                                             borderRadius: '50%',
-                                                                                            boxShadow:
-                                                                                                '0 4px 6px rgba(0, 0, 0, 0.1)',
+                                                                                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                                                                                         }}
                                                                                     />
                                                                                 </TableCell>
-                                                                                <TableCell>{item.id}</TableCell>
-                                                                                <TableCell>{item.name}</TableCell>
-                                                                                <TableCell>
-                                                                                    {item.quantity}
-                                                                                </TableCell>
-                                                                                <TableCell>${item.price}</TableCell>
+                                                                                <TableCell sx={{ textAlign: 'center' }}>{item.id}</TableCell>
+                                                                                <TableCell sx={{ textAlign: 'center' }}>{item.name}</TableCell>
+                                                                                <TableCell sx={{ textAlign: 'center' }}>{item.quantity}</TableCell>
+                                                                                <TableCell sx={{ textAlign: 'center' }}>${item.price}</TableCell>
                                                                             </TableRow>
                                                                         ))}
                                                                     </TableBody>
@@ -161,7 +155,7 @@ const UserOrders = () => {
                                         ))
                                     ) : (
                                         <TableRow>
-                                            <TableCell colSpan={5} className="no-orders">
+                                            <TableCell colSpan={6} className="no-orders" sx={{ textAlign: 'center' }}>
                                                 No orders found.
                                             </TableCell>
                                         </TableRow>
@@ -174,6 +168,6 @@ const UserOrders = () => {
             </Box>
         </Box>
     );
-}    
+}
 
 export default UserOrders;
