@@ -123,7 +123,7 @@ const handleGoogleLogin = (credentialResponse) => {
               
               <Button
                 variant="contained"
-                style={{ backgroundColor: '#9E3A2D', marginBottom: '20px' }}  
+                style={{ backgroundColor: '#FF9401', marginBottom: '20px' }}  
                 fullWidth
                 onClick={loginButton}
               >
@@ -142,7 +142,8 @@ const handleGoogleLogin = (credentialResponse) => {
   
               <Button
                 style={{
-                  color: '#9E3A2D',
+                  color: '#FF9401',
+                  fontWeight: 'bolder' ,
                   display: 'block',
                   margin: '0 auto',
                   marginBottom: '20px', 

@@ -70,7 +70,7 @@ const handleDeleteUser = async (userId) => {
 
   return (
     <>
-    {/* <Sidebar/> */}
+     <Sidebar/> 
     <Typography variant="h4" gutterBottom align="center" className="heading">
         Spot Seekers Users Information
       </Typography>
