@@ -35,7 +35,7 @@ import AccountSettings from './components/Account/Account'
  import Sidebar from './components/Admin panel/Sidebar' 
  import Dashboard from './components/Admin panel/Dashboard' 
 import Header from './components/Admin panel/Header'
-
+import CountriesManage from "./components/Admin panel/CountriesManage"
 import Orders from "./components/Orders/Orders"
 import Users from './components/Admin panel/Users'
 import Charts from "./components/Admin panel/Charts/Charts"
@@ -114,6 +114,7 @@ function App() {
     <Route path="/Admin/Orders" element={<OrderManage/>} />
     <Route path="/Admin/Products" element={<ProductManage/>} />
     <Route path="/Admin/users" element={<Users/>} />
+    <Route path="/Admin/countries" element={<CountriesManage/>} />
 
     </Routes>
     </SocketMessages>

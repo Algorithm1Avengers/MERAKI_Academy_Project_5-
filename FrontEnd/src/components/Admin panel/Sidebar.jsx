@@ -28,7 +28,9 @@ const Sidebar = () => {
         </ListItem>
         <ListItem button component={Link} to="/Admin/users">
           <ListItemText primary="Users" />
-          
+        </ListItem>
+        <ListItem button component={Link} to="/Admin/countries">
+          <ListItemText primary="Countries" />
         </ListItem>
       </List>
       <Divider />
