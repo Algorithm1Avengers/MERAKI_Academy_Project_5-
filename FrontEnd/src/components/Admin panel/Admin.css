@@ -7,7 +7,6 @@
 .admin-content {
     padding: 20px;
     flex: 1;
-    background-color: #f5f5f5;
     min-height: 100vh;
 }
 
@@ -43,7 +42,7 @@
 }
 
 .admin-table th {
-    background-color: #3498db;
+    
     color: white;
 }
 
@@ -84,11 +83,11 @@
 }
 
 .edit-icon {
-    color: #2980b9;
+    color: green;
 }
 
 .delete-icon {
-    color: hsl(6, 90%, 45%);
+    color:  red;
 }
 
 .no-products-message {
@@ -122,7 +121,7 @@
 }
 
 .order-table tr:nth-child(even) {
-    background-color: #f9f9f9; /* Highlight even rows with a different color */
+    background-color: #f9f9f9; 
 }
 
 /*************************************************/
@@ -135,6 +134,9 @@
 
 
 /*********product manage*************/
+.table-header{
+    color: black !important;
+}
 .admin-controls {
     display: flex;
     justify-content: space-between;
@@ -218,3 +220,59 @@
     background-color: #c0392b;
   }
   
+
+.order-table .table-row:hover {
+    background-color: #e7f7e5ab; 
+    cursor: pointer; 
+}
+
+
+  /**********************************************************/
+  /***********************************************************/
+  /***********************************************************/
+
+/**product page***/
+.order-table .table-row:hover .action-icon {
+    transform: scale(1.2); 
+    transition: transform 0.3s ease; 
+}
+
+.order-table .action-icon {
+    transition: transform 0.3s ease; 
+}
+
+.header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.manage-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.admin-controls {
+    display: flex;
+    align-items: center;
+}
+
+.add-product-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.search-input {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 250px;
+}

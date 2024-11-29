@@ -59,16 +59,16 @@ const UserOrders = () => {
 
     return (
         <Box sx={{ display: 'flex', height: '100vh' }}>
-            <Box className="order-management slide-up-animation" sx={{ padding: 2 }}>
+            <Box className="order-management slide-up-animation" sx={{ padding: 3. }}>
                 {loading ? (
                     <div className="loading-indicator">
                         <DotLoader color="#3498db" size={50} />
                     </div>
                 ) : (
                     <>
-                        <Box sx={{ height: '30px' }} />
+                        <Box sx={{ height: '14px' }} />
                         <Typography variant="h4" gutterBottom className="manage-title" />
-                        <Typography variant="h5.4" align="center" gutterBottom className='Your-Orders-h2 manage-title'>Your Orders</Typography>
+                        <Typography variant="h5.4" align="center" gutterBottom className='Your-Orders-h2 manage-title'>My Orders</Typography>
                         <TableContainer component={Paper} className="order-table-container" sx={{ overflowX: 'auto' }}>
                             <Table className="order-table order-items-table" sx={{ tableLayout: 'fixed', width: '100%' }}>
                                 <TableHead className="table-header">
