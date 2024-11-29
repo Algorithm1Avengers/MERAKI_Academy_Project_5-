@@ -13,6 +13,7 @@ import Grid from '@mui/joy/Grid'
 import { useDispatch, useSelector } from "react-redux";
 /* import { useTheme } from '@mui/material/styles' */
 import { useParams,Link } from 'react-router-dom'
+import { padding } from '@mui/system';
 
 
 
@@ -105,7 +106,7 @@ console.log(userId)
 
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} style={{padding:"20px"}}>
       {categoryList &&
         categoryList.map((elem, i) => (
           <Grid item xs={12} sm={6} md={3} key={i}>

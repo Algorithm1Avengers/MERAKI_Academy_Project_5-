@@ -8,6 +8,7 @@ import { FaHandsClapping } from "react-icons/fa6";
 import { Drawer, List, ListItem, ListItemText, Divider } from '@mui/material';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import Charts from './Charts/Charts';
 import { useDispatch, useSelector } from 'react-redux';
 const Dashboard = () => {
   const [profit, setProfit] = useState([])
@@ -186,10 +187,16 @@ const Dashboard = () => {
                   <Typography variant="h5">{data.comments}</Typography>
                 </CardContent>
               </Card>
+              
             </Grid>
           </Grid>
+          <Box sx={{ mt: 3 }}>
+            <Charts />
+          </Box>
         </Box>
+        
       </Box>
+      
     </>
   );
 };
