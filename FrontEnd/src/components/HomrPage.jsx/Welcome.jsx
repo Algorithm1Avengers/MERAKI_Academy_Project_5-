@@ -24,10 +24,10 @@ const Welcome = ()=> {
         </video> */}
 
         
-  <Carousel className='carousel'fade  interval={5000} style={{ width: '100%',marginBottom:"2px",}} >
+  <Carousel className='carousel' fade   style={{ width: '100%',marginBottom:"2px",}} >
       <Carousel.Item  interval={5000}>
       <video autoPlay muted loop className="header-background"  style={{ width: "100vw", height: "65vh", margin: "0 auto" }}>
-          <source src="./src/assets/na5.mp4" type="video/mp4" />
+          <source src="./src/assets/vid4.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Carousel.Caption>
@@ -39,8 +39,8 @@ const Welcome = ()=> {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={5000}>
-      <video autoPlay muted loop className="header-background" style={{ width: "100vw", height: "40vh", margin: "0 auto" }}>
-          <source src="./src/assets/v2.mp4" type="video/mp4" />
+      <video autoPlay muted loop className="header-background" style={{ width: "100vw", height: "65vh", margin: "0 auto" }}>
+          <source src="./src/assets/vid3.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Carousel.Caption>
@@ -52,8 +52,8 @@ const Welcome = ()=> {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={5000}>
-      <video autoPlay muted loop className="header-background" style={{ width: "100vw", height: "40vh", margin: "0 auto" }}>
-          <source src="./src/assets/v3.mp4" type="video/mp4" />
+      <video autoPlay muted loop className="header-background" style={{ width: "100vw", height: "65vh", margin: "0 auto" }}>
+          <source src="./src/assets/v2.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Carousel.Caption>
@@ -64,16 +64,16 @@ const Welcome = ()=> {
     </Box>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item >
-      <video autoPlay muted loop className="header-background" style={{ width: "100vw", height: "40vh", margin: "0 auto" }}>
-          <source src="./src/assets/.mp4" type="video/mp4" />
+      <Carousel.Item interval={5000}>
+      <video autoPlay muted loop className="header-background" style={{ width: "100vw", height: "65vh", margin: "0 auto" }}>
+          <source src="./src/assets/vid6.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <Carousel.Caption>
         <Box
       sx={{ py: 2, display: 'grid', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}
     >
-      {/* <Input placeholder="Search in here…" variant="plain"  style={{backgroundColor: "transparent"}}/> */}
+      
     </Box>
         </Carousel.Caption>
       </Carousel.Item>
