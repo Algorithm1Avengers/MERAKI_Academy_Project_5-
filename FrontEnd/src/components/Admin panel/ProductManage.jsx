@@ -133,64 +133,70 @@ const ProductManage = () => {
                 )}
             </div>
 
-            {/* Popup window to add new product */}
-            {isPopupOpen && (
-                <div className="popup-overlay">
-                    <div className="popup-content">
-                        <h2>Add New Product</h2>
-                        <form>
-                            <label>
-                                Product Name:
-                                <input
-                                    type="text"
-                                    value={newProduct.name}
-                                    onChange={(e) =>
-                                        setNewProduct({ ...newProduct, name: e.target.value })
-                                    }
-                                />
-                            </label>
-                            <label>
-                                Price:
-                                <input
-                                    type="number"
-                                    value={newProduct.price}
-                                    onChange={(e) =>
-                                        setNewProduct({ ...newProduct, price: e.target.value })
-                                    }
-                                />
-                            </label>
-                            <label>
-                                Stock Quantity:
-                                <input
-                                    type="number"
-                                    value={newProduct.stock_quantity}
-                                    onChange={(e) =>
-                                        setNewProduct({ ...newProduct, stock_quantity: e.target.value })
-                                    }
-                                />
-                            </label>
-                            <label>
-                                Image URL:
-                                <input
-                                    type="text"
-                                    value={newProduct.image}
-                                    onChange={(e) =>
-                                        setNewProduct({ ...newProduct, image: e.target.value })
-                                    }
-                                />
-                            </label>
-                        </form>
-                        <div className="popup-actions">
-                            <button className="save-button" onClick={handleAddProduct}>
-                                Save
-                            </button>
-                            <button className="cancel-button" onClick={() => setIsPopupOpen(false)}>
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+{/* Popup window to add new product */}
+{isPopupOpen && (
+    <div className="popup-overlay">
+        <div className="popup-content">
+            <h2>Add New Product</h2>
+            <form>
+                <label>
+                    Product Name:
+                    <input
+                        className='inputofpopup'
+                        type="text"
+                        value={newProduct.name}
+                        onChange={(e) =>
+                            setNewProduct({ ...newProduct, name: e.target.value })
+                        }
+                    />
+                </label>
+                <label>
+                    Price:
+                    <input
+                        className='inputofpopup'
+                        type="number"
+                        value={newProduct.price}
+                        onChange={(e) =>
+                            setNewProduct({ ...newProduct, price: e.target.value })
+                        }
+                    />
+                </label>
+                <label>
+                    Stock Quantity:
+                    <input
+                        className='inputofpopup'
+                        type="number"
+                        value={newProduct.stock_quantity}
+                        onChange={(e) =>
+                            setNewProduct({ ...newProduct, stock_quantity: e.target.value })
+                        }
+                    />
+                </label>
+                {/* File upload for image */}
+                <label>
+                    Product Image:
+                    <input
+                        className='inputofpopup'
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) =>
+                            setNewProduct({ ...newProduct, image: URL.createObjectURL(e.target.files[0]) })
+                        }
+                    />
+                </label>
+            </form>
+            <div className="popup-actions">
+                <button className="save-button" onClick={handleAddProduct}>
+                    Save
+                </button>
+                <button className="cancel-button" onClick={() => setIsPopupOpen(false)}>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+)}
+
         </div>
     );
 };
