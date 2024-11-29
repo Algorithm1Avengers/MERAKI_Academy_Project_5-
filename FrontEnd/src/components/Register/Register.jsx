@@ -156,7 +156,7 @@ const Register = () => {
                   variant="outlined"
                   fullWidth
                   component="label"
-                  style={{ backgroundColor: '#D1B28E', color: 'white', margin: '10px 0' ,fontWeight:"700", fontSize:"15px"}}
+                  style={{ backgroundColor: '#FF9401', color: 'white', margin: '10px 0' ,fontWeight:"700", fontSize:"15px"}}
                 >
                   Upload Profile Picture
                   <input
@@ -167,7 +167,7 @@ const Register = () => {
                 </Button>
                 <Button
                   variant="contained"
-                  style={{backgroundColor: "#D1B28E",fontWeight:"700", fontSize:"15px"}}
+                  style={{backgroundColor: "#FF9401",fontWeight:"700", fontSize:"15px"}}
                   fullWidth
                   onClick={RegisterButton}
                 >

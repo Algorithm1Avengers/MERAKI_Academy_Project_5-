@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Charts from './Charts/Charts';
 import { useDispatch, useSelector } from 'react-redux';
+import Sidebar from './Sidebar';
 const Dashboard = () => {
   const [profit, setProfit] = useState([])
   const token = useSelector((state) => state.login.token); 
@@ -85,14 +86,15 @@ const Dashboard = () => {
       <Box
           sx={{
             width: 250,
-            bgcolor: 'primary.main',
+            /* bgcolor: 'primary.main', */
             color: 'white',
             p: 2,
             display: { xs: 'none', sm: 'block' }, 
             mt : 12,
           }}
         >
-       <Drawer
+          <Sidebar/>
+      {/*  <Drawer
       variant="permanent"
       sx={{
         position: 'fixed', 
@@ -129,7 +131,7 @@ const Dashboard = () => {
         </ListItem>
       </List>
       <Divider sx={{ backgroundColor: '#0D2D7A' }} />
-    </Drawer>
+    </Drawer> */}
     </Box>
 
         

@@ -4,37 +4,43 @@ import { styled } from '@mui/material/styles'
 const Sidebar = () => {
   return (
     <Drawer
-      variant="permanent"
-      sx={{
+    variant="permanent"
+    sx={{
+      position: 'fixed', 
+      top: 0,
+      left: 0,
+      width: 240,
+      flexShrink: 0,
+      '& .MuiDrawer-paper': {
         width: 240,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: 240,
-          boxSizing: 'border-box',
-          marginTop: '80px',
-        }, 
-      }}
-    >
+        boxSizing: 'border-box',
+        marginTop: '70px',
+        backgroundColor: 'white', 
+        color: '#ffc107', 
+        
+      },
+    }}
+  >
+    <List sx={{ mt: 2 }}>
+     
+      <ListItem button component={Link} to="/Admin/dashbored" sx={{ '&:hover': { backgroundColor: '#ffc107' } }}>
+        <ListItemText primary="Dashboard" sx={{ color: 'black', '&:hover': { color: '#FBBF24' } }} />
+      </ListItem>
+    
+      <ListItem button component={Link} to="/Admin/products" sx={{ '&:hover': { backgroundColor: '#ffc107' } }}>
+        <ListItemText primary="Products" sx={{ color: 'black', '&:hover': { color: '#FBBF24' } }} />
+      </ListItem>
       
-      <List sx={{mt:10}}>
-        <ListItem button component={Link} to="/Admin/dashbored">
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-        <ListItem button component={Link} to="/Admin/products">
-          <ListItemText primary="Products" />
-        </ListItem>
-        <ListItem button component={Link} to="/Admin/orders">
-          <ListItemText primary="Orders" />
-        </ListItem>
-        <ListItem button component={Link} to="/Admin/users">
-          <ListItemText primary="Users" />
-        </ListItem>
-        <ListItem button component={Link} to="/Admin/countries">
-          <ListItemText primary="Countries" />
-        </ListItem>
-      </List>
-      <Divider />
-    </Drawer>
+      <ListItem button component={Link} to="/Admin/orders" sx={{ '&:hover': { backgroundColor: '#ffc107' } }}>
+        <ListItemText primary="Orders" sx={{ color: 'black', '&:hover': { color: '#FBBF24' } }} />
+      </ListItem>
+      
+      <ListItem button component={Link} to="/Admin/users" sx={{ '&:hover': { backgroundColor: '#ffc107' } }}>
+        <ListItemText primary="Users" sx={{ color: 'black', '&:hover': { color: '#FBBF24' } }} />
+      </ListItem>
+    </List>
+    <Divider sx={{ backgroundColor: '#0D2D7A' }} />
+  </Drawer>
   );
 }; 
 

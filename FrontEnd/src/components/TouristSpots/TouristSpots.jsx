@@ -138,7 +138,7 @@ console.log(userId)
               </CardOverflow>
               <CardContent>
                 <Typography level="title-md">
-                  <Link to={`TouristSpots-Detailes/${elem.spot_name}`} overlay underline="none">
+                  <Link style={{color:'#FF9401', textDecoration: 'none' }}to={`TouristSpots-Detailes/${elem.spot_name}`} overlay underline="none">
                     {elem.spot_name} 
                   </Link>
                 </Typography>
@@ -152,7 +152,7 @@ console.log(userId)
                   <Typography level="body-xs">{elem.views } views</Typography>
                   <Divider orientation="vertical" />
                   
-                  <Typography level="body-xs">
+                  <Typography level="body-xs" sx={{ display: 'flex', justifyContent: 'flex-start' }} >
                     {weather[elem.spot_name] ? (
                      
                       `Weather: ${weather[elem.spot_name]?.data[0]?.app_temp}°C`
