@@ -246,9 +246,9 @@ if (userId){
         <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
           <img
             id="logo"
-            src="/puplic-logo.png"
+            src="/logo.png"
             alt="Logo"
-            style={{ height: "55px", width: "160px" }}
+            style={{ height: "70px", width: "160px" }}
             onClick={() => navigate("/")}
           />
         </Box>
