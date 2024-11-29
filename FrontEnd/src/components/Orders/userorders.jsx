@@ -16,6 +16,7 @@ import {
     Paper,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { DotLoader} from "react-spinners"; //loading spinner
 import './userorders.css';
 
 
@@ -34,13 +35,16 @@ const UserOrders = () => {
             });
             if (response.data.success) {
                 setOrders(response.data.orders);
-            } else {
+            } 
+            else {
                 setError('Failed to fetch orders.');
             }
-        } catch (err) {
+        }
+        catch (err) {
             setError('Error fetching orders.');
             console.error(err);
-        } finally {
+        } 
+        finally {
             setLoading(false);
         }
     };
@@ -57,112 +61,119 @@ const UserOrders = () => {
 
 
     return (
-        <Box
-            className="order-manageeeee"
-            p={3}
-            sx={{
-                maxWidth: '1170px',
-                margin: 'auto',
-                backgroundColor: '#F4F7F9',
-                borderRadius: '10px',
-                boxShadow: '0 8px 16px rgba(0, 0, 0, 0.05)',
-            }}
-        >
-            <Typography variant="h5.4" align="center" gutterBottom className="Your-Orders-h2">
-                Your Orders
-            </Typography>
-            {loading && <Typography>Loading orders...</Typography>}
-            {error && <Typography color="error">{error}</Typography>}
-            {!loading && !error && orders.length === 0 && <Typography>No orders found.</Typography>}
-            <TableContainer component={Paper}>
-                <Table className="order-table"> {/* تم تغيير هذه الفئة إلى order-table */}
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Order ID</TableCell>
-                            <TableCell>Order Date</TableCell>
-                            <TableCell>Total Amount</TableCell>
-                            <TableCell>Is Delivered</TableCell>
-                            <TableCell>Order Items</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {orders.map((order) => (
-                            <OrderRow
-                                key={order.id}
-                                order={order}
-                                expandedOrderId={expandedOrderId}
-                                handleToggleDetails={handleToggleDetails}
-                            />
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Box>
-    );
-};
-
-const OrderRow = ({ order, expandedOrderId, handleToggleDetails }) => {
-    const isOpen = expandedOrderId === order.id;
-
-
-    return (
-        <>
-            <TableRow>
-                <TableCell>{order.id}</TableCell>
-                <TableCell>{new Date(order.created_at).toLocaleDateString('en-US')}</TableCell>
-                <TableCell>${order.total_amount}</TableCell>
-                <TableCell>{order.isDelivered ? 'Yes' : 'No'}</TableCell>
-                <TableCell>
-                    <IconButton onClick={() => handleToggleDetails(order.id)}>
-                        <ExpandMoreIcon />
-                    </IconButton>
-                </TableCell>
-            </TableRow>
-            <TableRow>
-                <TableCell colSpan={5} sx={{ padding: 0 }}>
-                    <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                        <Box sx={{ margin: 1 }}>
-                            <Table size="small" className="order-table"> {/* تم تغيير هذه الفئة إلى order-table */}
-                                <TableHead>
+        <Box sx={{ display: 'flex', height: '100vh' }}>
+            <Box className="order-management slide-up-animation" sx={{ padding: 2 }}>
+                {loading ? (
+                    <div className="loading-indicator">
+                        <DotLoader color="#3498db" size={50} />
+                    </div>
+                ) : (
+                    <>
+                        <Box sx={{ height: '30px' }} />
+                        <Typography variant="h4" gutterBottom className="manage-title">
+                        </Typography>
+                        <Typography variant="h5.4" align="center" gutterBottom className='Your-Orders-h2 manage-title'>Your Orders</Typography>
+                        <TableContainer component={Paper} className="order-table-container">
+                            <Table className="order-table order-items-table">
+                                <TableHead className="table-header">
                                     <TableRow>
-                                        <TableCell>Product Image</TableCell>
-                                        <TableCell>Product ID</TableCell>
-                                        <TableCell>Product Name</TableCell>
-                                        <TableCell>Quantity</TableCell>
-                                        <TableCell>Price</TableCell>
+                                        <TableCell>Order ID</TableCell>
+                                        <TableCell>Order Date</TableCell>
+                                        <TableCell>Total Amount</TableCell>
+                                        <TableCell>Is Delivered</TableCell>
+                                        <TableCell>Details</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {order.items.map((item) => (
-                                        <TableRow key={item.id}>
-                                            <TableCell>
-                                                <img
-                                                    src={item.image}
-                                                    alt={item.name}
-                                                    className="product-table-image"
-                                                    style={{
-                                                        width: '60px',
-                                                        height: '60px',
-                                                        objectFit: 'cover',
-                                                        borderRadius: '50%',
-                                                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                                                    }}
-                                                />
+                                    {orders.length > 0 ? (
+                                        orders.map((order) => (
+                                            <React.Fragment key={order.id}>
+                                                <TableRow className="table-row">
+                                                    <TableCell>{order.id}</TableCell>
+                                                    <TableCell>
+                                                        {new Date(order.created_at).toLocaleDateString('en-US')}
+                                                    </TableCell>
+                                                    <TableCell>${order.total_amount}</TableCell>
+                                                    <TableCell>
+                                                        {order.isDelivered ? 'Yes' : 'No'}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <IconButton
+                                                            onClick={() => handleToggleDetails(order.id)}
+                                                            className="expand-button"
+                                                        >
+                                                            <ExpandMoreIcon />
+                                                        </IconButton>
+                                                    </TableCell>
+                                                </TableRow>
+                                                {/* Details */}
+                                                <TableRow>
+                                                    <TableCell colSpan={5}>
+                                                        <Collapse
+                                                            in={expandedOrderId === order.id}
+                                                            timeout="auto"
+                                                            unmountOnExit
+                                                        >
+                                                            <Box sx={{ margin: 1 }}>
+                                                                <Table size="small">
+                                                                    <TableHead>
+                                                                        <TableRow>
+                                                                            <TableCell>Product Image</TableCell>
+                                                                            <TableCell>Product ID</TableCell>
+                                                                            <TableCell>Product Name</TableCell>
+                                                                            <TableCell>Quantity</TableCell>
+                                                                            <TableCell>Price</TableCell>
+                                                                        </TableRow>
+                                                                    </TableHead>
+                                                                    <TableBody>
+                                                                        {order.items.map((item) => (
+                                                                            <TableRow key={item.id}>
+                                                                                <TableCell>
+                                                                                    <img
+                                                                                        src={item.image}
+                                                                                        alt={item.name}
+                                                                                        className="product-table-image"
+                                                                                        style={{
+                                                                                            width: '60px',
+                                                                                            height: '60px',
+                                                                                            objectFit: 'cover',
+                                                                                            borderRadius: '50%',
+                                                                                            boxShadow:
+                                                                                                '0 4px 6px rgba(0, 0, 0, 0.1)',
+                                                                                        }}
+                                                                                    />
+                                                                                </TableCell>
+                                                                                <TableCell>{item.id}</TableCell>
+                                                                                <TableCell>{item.name}</TableCell>
+                                                                                <TableCell>
+                                                                                    {item.quantity}
+                                                                                </TableCell>
+                                                                                <TableCell>${item.price}</TableCell>
+                                                                            </TableRow>
+                                                                        ))}
+                                                                    </TableBody>
+                                                                </Table>
+                                                            </Box>
+                                                        </Collapse>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </React.Fragment>
+                                        ))
+                                    ) : (
+                                        <TableRow>
+                                            <TableCell colSpan={5} className="no-orders">
+                                                No orders found.
                                             </TableCell>
-                                            <TableCell>{item.id}</TableCell>
-                                            <TableCell>{item.name}</TableCell>
-                                            <TableCell>{item.quantity}</TableCell>
-                                            <TableCell>${item.price}</TableCell>
                                         </TableRow>
-                                    ))}
+                                    )}
                                 </TableBody>
                             </Table>
-                        </Box>
-                    </Collapse>
-                </TableCell>
-            </TableRow>
-        </>
+                        </TableContainer>
+                    </>
+                )}
+            </Box>
+        </Box>
     );
-};
+}    
 
 export default UserOrders;
