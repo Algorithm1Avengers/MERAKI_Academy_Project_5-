@@ -46,8 +46,8 @@ const OrderConfirmation = () => {
 
         finally {
           // Stop loading
-          dispatch(setLoading(false));
-      }
+            dispatch(setLoading(false));
+        }
     };
 
     useEffect(() => {
@@ -71,7 +71,7 @@ const OrderConfirmation = () => {
 
             <p>Be ready! our representative will contact you soon!</p>
             
-      {isLoading ? (
+    {isLoading ? (
                 <div className="loading-indicator">
                     <DotLoader color="#3498db" size={50} />
                 </div>
@@ -84,7 +84,7 @@ const OrderConfirmation = () => {
                           <p>Total: {orderDetails.total_amount
                           }</p>
                           <p>Payment Method: {orderDetails.payment_method}</p>
-                          <button onClick={() => navigate('/my-orders')}>View all previous orders</button>
+                          <button onClick={() => navigate('/my-PreviousOrders')}>View all previous orders</button>
                       </>
                   ) : (
                       error && <p style={{ color: 'red' }}>{error}</p>
