@@ -24,7 +24,7 @@ color: #05011d !important;
 }*/
 
 .mooon:hover .moon-icon {
-    color: #ffcc00; 
+    color: rgba(164, 129, 41, 0.5); 
     transform: rotate(15deg); 
   }
 

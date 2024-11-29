@@ -84,7 +84,7 @@
 .search-bar button {
     padding: 12px 20px;
     border: none;
-    background-color: hwb(5 29% 0%);
+    background-color: rgba(237, 194, 83, 0.5);
     color: white;
     border-radius: 0 25px 25px 0;
     cursor: pointer;
@@ -111,4 +111,8 @@
 
 .card-body:hover{
   background-Color: rgba(237, 194, 83, 0.5) !important
+}
+
+.text{
+  color: hwb(24 7% 2% / 0.83);
 }

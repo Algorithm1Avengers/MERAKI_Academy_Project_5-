@@ -246,7 +246,7 @@ if (userId){
         <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
           <img
             id="logo"
-            src="/logo.png"
+            src="/logo2.png"
             alt="Logo"
             style={{ height: "70px", width: "160px" }}
             onClick={() => navigate("/")}

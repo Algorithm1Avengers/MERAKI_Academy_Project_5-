@@ -10,7 +10,9 @@ const Welcome = ()=> {
     <>
     {/* Search box*/}
     <div className="header-content">
-          <h1>Where do you want to travel?</h1>
+          <h1>Where do you want to travel?<br/>
+          <span className='text'>
+            Start Your Virtual Tour</span></h1>
           <div className="search-bar">
               <input id="searchInput" placeholder="Search for a place..." onChange={(e)=>{setSearchInput(e.target.value)}}/>
               <button id="searchButton">Search</button>
