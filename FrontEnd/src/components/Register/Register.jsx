@@ -29,7 +29,8 @@ const Register = () => {
       const response = await axios.post('http://localhost:5000/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      setImageUrl(response.data.image);
+      setImageUrl(response.data.image_url);
+      console.log(response.data.image_url)
     } catch (error) {
       console.error('Error uploading image:', error);
     }

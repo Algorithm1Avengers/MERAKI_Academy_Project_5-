@@ -265,7 +265,7 @@ console.log("spotId",spotId)
 
 
   <Typography variant="h3" sx={{ textAlign: 'center', fontWeight: 'bold', color: '#333', marginBottom: 2 }}>
-  {spotInfo[0]?.country_spot}
+  {spotInfo[0]?.country_spot}-{spotInfo[0]?.spot_name}
 </Typography>
   
 <Grid container spacing={3} sx={{ justifyContent: 'center', px: 2, alignItems: 'stretch' }}>

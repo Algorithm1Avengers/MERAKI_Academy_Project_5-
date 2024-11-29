@@ -3,10 +3,13 @@ import { TextField, Button, Box, Typography, Container ,Grid,Avatar} from "@mui/
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { setLogin,setUserId } from "../../../Redux/reducers/login";
 
 const AccountSettings = () => {
   const [selectedImage, setSelectedImage] = useState(null); 
   const navigate = useNavigate();
+  const dispatch= useDispatch()
+  const [successMessage, setSuccessMessage] = useState("")
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,15 +30,31 @@ const AccountSettings = () => {
     }));
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file); 
-      setSelectedImage(imageUrl); 
+  const handleImageChange = async (e) => {
+    const formData = new FormData();
+    const file = e.target.files[0]; // Get the selected file
+    
+    formData.append('image', file);
+  
+    try {
+      const response = await axios.post('http://localhost:5000/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+  
+      // Assuming the response contains the image URL from Cloudinary
+      const imageUrl = response.data.image_url; 
+  
+      // Set the image URL from Cloudinary in state
+      setSelectedImage(imageUrl);
+  
+      // Update the formData with the image URL instead of the file itself
       setFormData((prevData) => ({
         ...prevData,
-        image: file, 
+        image: imageUrl,  // Use image URL here
       }));
+  
+    } catch (error) {
+      console.error('Error uploading image:', error);
     }
   };
   
@@ -44,14 +63,17 @@ const AccountSettings = () => {
 
     try {
       
-      
+      console.log(userId)
 
       const response = await axios.put(`http://localhost:5000/users/update/${userId}`, formData);
       if (response.status === 200) {
-        alert("Account updated successfully!");
-        navigate("/profile"); 
+        dispatch(setLogin(response.data.token))
+  
+  setSuccessMessage("Update successful! Redirecting to Homepage...");
+  navigate("/")
       }
     } catch (error) {
+      console.log(error)
       setError(error.response?.data?.message || "Error updating account");
     }
   };
@@ -65,6 +87,7 @@ const AccountSettings = () => {
         const response = await axios.get(`http://localhost:5000/users/userinfo/${userId}`);
         setFormData(response.data.result[0]); 
       } catch (error) {
+        console.log(error)
         console.error("Error fetching user data:", error);
       }
     };
@@ -72,6 +95,7 @@ const AccountSettings = () => {
     fetchUserData();
   }, []);
 console.log(formData)
+
   return (
     <Container maxWidth="sm">
     
@@ -120,8 +144,8 @@ console.log(formData)
             label="First Name"
             variant="outlined"
             fullWidth
-            name="firstName"
-            value={formData.firstName}
+            name="firstname"
+            value={formData.firstname}
             onChange={handleChange}
             required
           />
@@ -133,8 +157,8 @@ console.log(formData)
             label="Last Name"
             variant="outlined"
             fullWidth
-            name="lastName"
-            value={formData.lastName}
+            name="lastname"
+            value={formData.lastname}
             onChange={handleChange}
             required
           />
