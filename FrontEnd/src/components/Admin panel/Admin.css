@@ -357,3 +357,15 @@ h2 {
         transform: scale(1);
     }
 }
+
+a{
+    font-size: x-small;
+}
+
+.css-1iblg5b{
+    background-color: #ddd;
+}
+
+.MuiButtonBase-root{
+    background-color: red;
+}

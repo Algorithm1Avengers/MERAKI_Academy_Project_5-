@@ -1,204 +1,286 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setProducts, setLoading } from "../../../Redux/reducers/products";
-import axios from "axios";
-import { FaEdit, FaTrash } from "react-icons/fa";
-import { DotLoader } from "react-spinners";
-import Sidebar from "./Sidebar";
-import "./Admin.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import {
+  Box,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  IconButton,
+  Collapse,
+  Snackbar,
+  Paper,
+  TextField,
+  Button,
+  Modal,
+  Stack,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';   
+
+import CheckIcon from '@mui/icons-material/Check';
+import CancelIcon from '@mui/icons-material/Cancel';
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import CloseIcon from '@mui/icons-material/Close';
+import Sidebar from './Sidebar';
+import './Admin.css';
 
 const CountriesManage = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const products = useSelector((state) => state.products.products);
-  const isLoading = useSelector((state) => state.products.isLoading);
-
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [newProduct, setNewCountry] = useState({
-    name: "",
-    Description: "",
-    image: "",
+  
+ 
+  const [categories, setCategories] = useState([]);
+  const [editedCategory, setEditedCategory] = useState({
+    category_name: "",
+    description: "",
+    image_url: "",
   });
-
+  const [isEditing, setIsEditing] = useState(false);
+  const [newCategory, setNewCategory] = useState({
+    category_name: "",
+    description: "",
+    image_url: "",
+  });
+  const [openAddCategoryModal, setOpenAddCategoryModal] = useState(false);
   useEffect(() => {
-    dispatch(setLoading(true));
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/category`);
+        setCategories(response.data.result); 1 
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
 
-    axios
-      .get(`http://localhost:5000/category`)
-      .then((response) => {
-        dispatch(setProducts(response.data.products));
-        console.log(response.data.products);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-        dispatch(setProducts([]));
-      })
-      .finally(() => {
-        dispatch(setLoading(false));
+    fetchCategories();
+  }, []);
+
+  const handleDelete = async (categoryName) => {
+    try {
+      await axios.delete(`http://localhost:5000/category/${categoryName}`);
+      setCategories(categories.filter((category) => category.category_name !== categoryName));
+    } catch (error) {
+      console.error("Error deleting category:", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    if (isEditing) {
+      setEditedCategory({
+        ...editedCategory,
+        [e.target.name]: e.target.value,
       });
-  }, [dispatch]);
-
-  const handleEditProduct = (productId) => {
-    navigate(`/admin/edit-product/${productId}`);
+    } else {
+      setNewCategory({
+        ...newCategory,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
-  const handleDeleteProduct = (productId) => {
-    console.log(`Delete product with ID: ${productId}`);
+  const handleEdit = (category) => {
+    setEditedCategory(category);
+    setIsEditing(true);
+    setOpenEditModal(true);
   };
 
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const handleUpdate = async () => {
+    try {
+      await axios.put(`http://localhost:5000/category/${editedCategory.category_name}`, editedCategory);
+      setCategories(
+        categories.map((category) =>
+          category.category_name === editedCategory.category_name ? editedCategory : category
+        )
+      );
+      setIsEditing(false);
+    } catch (error) {
+      console.error("Error updating category:", error);
+    }
+  };
+
+  const handleAddCategory = async () => {
+    try {
+      await axios.post("http://localhost:5000/category/add", newCategory);
+      setCategories([...categories, newCategory]);
+      setNewCategory({
+        category_name: "",
+        description: "",
+        image_url: "",
+      });
+      setOpenAddCategoryModal(false);
+    } catch (error) {
+      console.error("Error adding category:", error);
+    }
+  };
+  
+  const addCategoryModalContent = (
+    <Modal
+      open={openAddCategoryModal}
+      onClose={() => setOpenAddCategoryModal(false)}
+      aria-labelledby="add-category-modal"
+      aria-describedby="add-category-modal-description"
+    >
+      <Box sx={{ width: 400, mx: 'auto', mt: 5, padding: 3 }}>
+        <Typography variant="h6">
+          Add New Category
+        </Typography>
+        <TextField
+          margin="normal"
+          fullWidth
+          id="category-name"
+          label="Category Name"
+          name="category_name"
+          value={newCategory.category_name}
+          onChange={handleInputChange}
+        />
+        <TextField
+          margin="normal"
+          fullWidth
+          id="description"
+          label="Description"
+          name="description"
+          value={newCategory.description}
+          onChange={handleInputChange}
+        />
+        <TextField
+          margin="normal"
+          fullWidth
+          id="image-url"
+          label="Image URL"
+          name="image_url"
+          value={newCategory.image_url}
+          onChange={handleInputChange}
+        />
+        <Button variant="contained" onClick={handleAddCategory}>
+          Add Category
+        </Button>
+      </Box>
+    </Modal>
   );
-
-  const handleAddProduct = () => {
-    console.log("New Product:", newProduct);
-    setIsPopupOpen(false); // Close the popup after saving
-  };
-
   return (
-    <div className="admin-container">
-      <Sidebar />
-      <div className="admin-content">
-        <h1 className="admin-title">Manage Products</h1>
+    <Box sx={{ width: '100%' }}>
+      {/* <Sidebar /> */}
+      <div>
 
-        {/* Add button and search box */}
-        <div className="admin-controls">
-          <button
-            className="add-product-button"
-            onClick={() => setIsPopupOpen(true)} // Open the popup
-          >
-            + Add New Country
-          </button>
+      <Button variant="contained" onClick={() => setOpenAddCategoryModal(true)}>
+        Add New Category
+      </Button>
 
-          {/*search box */}
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search for products..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-
-        {isLoading ? (
-          <div className="loading-indicator">
-            <DotLoader color="#3498db" size={50} />
-          </div>
-        ) : filteredProducts.length > 0 ? (
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Country ID</th>
-                <th>Country Name</th>
-                <th>Country Image</th>
-
-                <th>Category Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredProducts.map((product) => (
-                <tr key={product.id}>
-                  <td>{product.id}</td>
-                  <td>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="product-table-image"
-                    />
-                  </td>
-                  <td>{product.name}</td>
-                  <td>{product.price} JD</td>
-                  <td>{product.stock_quantity}</td>
-                  <td>{product.category_name}</td>
-                  <td>
-                    <FaEdit
-                      className="action-icon edit-icon"
-                      onClick={() => handleEditProduct(product.id)}
-                    />
-                    <FaTrash
-                      className="action-icon delete-icon"
-                      onClick={() => handleDeleteProduct(product.id)}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p className="no-products-message">No products found.</p>
-        )}
+      {addCategoryModalContent}
       </div>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }}>
+          <TableHead>
+            <TableRow>
+              <TableCell>Category Name</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Image URL</TableCell>
+              <TableCell>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {categories.map((category) => (
+              <TableRow key={category.category_name}>
+                {isEditing && editedCategory.category_name === category.category_name ? (
+                  <>
+                    <TableCell>
+                      <TextField
+                        name="category_name"
+                        value={editedCategory.category_name}
+                        onChange={handleInputChange}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <TextField
+                        name="description"
+                        value={editedCategory.description}
+                        onChange={handleInputChange}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <TextField
+                        name="image_url"
+                        value={editedCategory.image_url}
+                        onChange={handleInputChange}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <Button variant="contained" color="primary" onClick={handleUpdate}>
+                        Update
+                      </Button>
+                      <Button variant="text" onClick={() => setIsEditing(false)}>
+                        Cancel
+                      </Button>
+                    </TableCell>
+                  </>
+                ) : (
+                  <>
+                    <TableCell>{category.category_name}</TableCell>
+                    <TableCell>{category.description}</TableCell>
+                    <TableCell><a href={category.image_url} target="_blank" rel="noopener noreferrer">
+              {category.image_url}
+            </a></TableCell>
+                    <TableCell>
+                      <IconButton onClick={() => handleEdit(category)}>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton onClick={() => handleDelete(category.category_name)}>   
 
-      {/* Popup window to add new product */}
-      {isPopupOpen && (
-        <div className="popup-overlay">
-          <div className="popup-content">
-            <h2>Add New Product</h2>
-            <form>
-              <label>
-                Product Name:
-                <input
-                  type="text"
-                  value={newProduct.name}
-                  onChange={(e) =>
-                    setNewProduct({ ...newProduct, name: e.target.value })
-                  }
-                />
-              </label>
-              <label>
-                Price:
-                <input
-                  type="number"
-                  value={newProduct.price}
-                  onChange={(e) =>
-                    setNewProduct({ ...newProduct, price: e.target.value })
-                  }
-                />
-              </label>
-              <label>
-                Stock Quantity:
-                <input
-                  type="number"
-                  value={newProduct.stock_quantity}
-                  onChange={(e) =>
-                    setNewProduct({
-                      ...newProduct,
-                      stock_quantity: e.target.value,
-                    })
-                  }
-                />
-              </label>
-              <label>
-                Image URL:
-                <input
-                  type="text"
-                  value={newProduct.image}
-                  onChange={(e) =>
-                    setNewProduct({ ...newProduct, image: e.target.value })
-                  }
-                />
-              </label>
-            </form>
-            <div className="popup-actions">
-              <button className="save-button" onClick={handleAddProduct}>
-                Save
-              </button>
-              <button
-                className="cancel-button"
-                onClick={() => setIsPopupOpen(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                  </>
+                )}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      {/* <Typography variant="h6" sx={{ mt: 2 }}>
+        Add New Category
+      </Typography>
+      <form onSubmit={handleAddCategory}>
+        <TextField
+          name="category_name"
+          label="Category Name"
+          value={newCategory.category_name}
+          onChange={handleInputChange}
+          sx={{ width: '100%' }}
+          required
+        />
+        <TextField
+          name="description"
+          label="Description"
+          value={newCategory.description}
+          onChange={handleInputChange}
+          sx={{ width: '100%', mt: 1 }}
+        />
+        <TextField
+          name="image_url"
+          label="Image URL"
+          value={newCategory.image_url}
+          onChange={handleInputChange}
+          sx={{ width: '100%', mt: 1 }}
+        />
+        <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+          Add Category
+        </Button>
+      </form> */}
+    </Box>
   );
 };
+
+
 export default CountriesManage;
+
+
+
+
