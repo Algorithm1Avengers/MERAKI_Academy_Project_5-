@@ -228,7 +228,7 @@ if (userId){
         }}
       >
         <video
-          autoPlay
+          
           loop
           muted
           style={{
