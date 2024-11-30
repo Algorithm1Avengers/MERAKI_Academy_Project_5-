@@ -82,7 +82,8 @@ const Dashboard = () => {
   return (
 
     <>
-      <Box sx={{ display: 'flex', height: '100vh' }}>
+    <div style={{marginLeft:'500px'}}>
+    <Box sx={{ display: 'flex', height: '100vh' }}>
         <Box sx={{
           width: 250,
           color: 'white',
@@ -93,64 +94,68 @@ const Dashboard = () => {
           <Sidebar />
         </Box>
 
-        <Box sx={{ flexGrow: 1, p: 3 }}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ flexGrow: 1, p: 3  ,ml:'-500px'}}>
+          {/* Welcome Section */}
+          <div style={{ display: 'flex', alignItems: 'start' }}>
             <Typography variant="h6">Welcome Back!</Typography>
             <FaHandsClapping style={{ marginLeft: 8, fontSize: 30 }} />
           </div>
 
+          {/* Dashboard Title */}
           <Box sx={{ mb: 3 }}>
             <Typography variant="h4">Dashboard</Typography>
           </Box>
 
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ bgcolor: 'success.main', color: 'white' }}>
-                <CardContent>
-                  <MonetizationOnIcon sx={{ fontSize: 40 }} />
-                  <Typography variant="h6">Profit</Typography>
-                  <Typography variant="h5">${data.profit.toPrecision(5)}</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+          {/* Grid Layout for Cards */}
+          <Grid container spacing={4}>
+  <Grid item xs={16} sm={16} md={3}>  {/* md={4} for each card */}
+    <Card sx={{ bgcolor: 'success.main', color: 'white', height: '100%' }}>
+      <CardContent>
+        <MonetizationOnIcon sx={{ fontSize: 40 }} />
+        <Typography variant="h6">Profit</Typography>
+        <Typography variant="h5">${data.profit.toPrecision(5)}</Typography>
+      </CardContent>
+    </Card>
+  </Grid>
 
-            <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ bgcolor: 'primary.main', color: 'white' }}>
-                <CardContent>
-                  <PeopleIcon sx={{ fontSize: 40 }} />
-                  <Typography variant="h6">Users</Typography>
-                  <Typography variant="h5">{data.users}</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+  <Grid item xs={12} sm={6} md={3}>  {/* md={4} for each card */}
+    <Card sx={{ bgcolor: 'primary.main', color: 'white', height: '100%' }}>
+      <CardContent>
+        <PeopleIcon sx={{ fontSize: 40 }} />
+        <Typography variant="h6">Users</Typography>
+        <Typography variant="h5">{data.users}</Typography>
+      </CardContent>
+    </Card>
+  </Grid>
 
-            <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ bgcolor: 'warning.main', color: 'white' }}>
-                <CardContent>
-                  <BookIcon sx={{ fontSize: 40 }} />
-                  <Typography variant="h6">Active Guides</Typography>
-                  <Typography variant="h5">{data.activeGuides}</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+  <Grid item xs={12} sm={6} md={3}>  {/* md={4} for each card */}
+    <Card sx={{ bgcolor: 'warning.main', color: 'white', height: '100%' }}>
+      <CardContent>
+        <BookIcon sx={{ fontSize: 40 }} />
+        <Typography variant="h6">Active Guides</Typography>
+        <Typography variant="h5">{data.activeGuides}</Typography>
+      </CardContent>
+    </Card>
+  </Grid>
 
-            <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ bgcolor: 'secondary.main', color: 'white' }}>
-                <CardContent>
-                  <CommentIcon sx={{ fontSize: 40 }} />
-                  <Typography variant="h6">New Comments</Typography>
-                  <Typography variant="h5">{data.comments}</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
+  <Grid item xs={12} sm={6} md={3}>  {/* md={4} for each card */}
+    <Card sx={{ bgcolor: 'secondary.main', color: 'white', height: '100%' }}>
+      <CardContent>
+        <CommentIcon sx={{ fontSize: 40 }} />
+        <Typography variant="h6">New Comments</Typography>
+        <Typography variant="h5">{data.comments}</Typography>
+      </CardContent>
+    </Card>
+  </Grid>
+</Grid>
 
-          {/* Directly below the cards with no extra margin */}
-          <Box sx={{ mt: 0 }}>
-            <Charts />
+          {/* Charts Section */}
+          <Box sx={{ mt: 3 }}>
+             <Charts /> 
           </Box>
         </Box>
       </Box>
+    </div>
       
     </>
   );

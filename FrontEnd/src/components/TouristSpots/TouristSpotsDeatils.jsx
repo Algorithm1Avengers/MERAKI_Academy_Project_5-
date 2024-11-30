@@ -127,7 +127,7 @@ console.log("Please login to add comment");
 console.log(spotInfo[0])
 spotInfo[0]?.spot_name
 const getWeather = async (city) => {
-  const apiKey = 'f6de574895244be8b1db01f15b083a07';
+  const apiKey = '1582a3807f8941f587d949d7c830d0db';
   const url = `https://api.weatherbit.io/v2.0/current?city=Siena &key=${apiKey}`;
   try {
     const response = await fetch(url); 

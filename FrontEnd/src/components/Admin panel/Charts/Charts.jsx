@@ -20,65 +20,61 @@ defaults.plugins.title.color = "black";
 const Charts = () => {
   
     return (
-        <div className="Charts">
-          <div className="dataCard revenueCard">
-            <Line
-              data={{
-                labels: SalesData.map((data) => data.label),
-                datasets: [
-                  {
-                    label: "Sales",
-                    data: SalesData.map((data) => data.revenue),
-                    backgroundColor: "#064FF0",
-                    borderColor: "#064FF0",
-                  },
-                
+      <div className="Charts">
+      <div className="dataCard">
+        <Line
+          data={{
+            labels: SalesData.map((data) => data.label),
+            datasets: [
+              {
+                label: "Sales",
+                data: SalesData.map((data) => data.revenue),
+                backgroundColor: "#064FF0",
+                borderColor: "#064FF0",
+              },
+            ],
+          }}
+          options={{
+            plugins: {
+              title: {
+                text: "Monthly Revenue",
+              },
+            },
+          }}
+        />
+      </div>
+
+      <div className="dataCard">
+        <Doughnut
+          data={{
+            labels: UserData.map((data) => data.label),
+            datasets: [
+              {
+                label: "Count",
+                data: UserData.map((data) => data.value),
+                backgroundColor: [
+                  "rgba(43, 63, 229, 0.8)",
+                  "rgba(250, 192, 19, 0.8)",
+                  "rgba(253, 135, 135, 0.8)",
                 ],
-              }}
-              options={{
-                
-                plugins: {
-                  title: {
-                    text: "Monthly Revenue ",
-                  },
-                },
-              }}
-            />
-          </div>
-    
-         
-    
-          <div className="dataCard categoryCard">
-            <Doughnut
-              data={{
-                labels: UserData.map((data) => data.label),
-                datasets: [
-                  {
-                    label: "Count",
-                    data: UserData.map((data) => data.value),
-                    backgroundColor: [
-                      "rgba(43, 63, 229, 0.8)",
-                      "rgba(250, 192, 19, 0.8)",
-                      "rgba(253, 135, 135, 0.8)",
-                    ],
-                    borderColor: [
-                      "rgba(43, 63, 229, 0.8)",
-                      "rgba(250, 192, 19, 0.8)",
-                      "rgba(253, 135, 135, 0.8)",
-                    ],
-                  },
+                borderColor: [
+                  "rgba(43, 63, 229, 0.8)",
+                  "rgba(250, 192, 19, 0.8)",
+                  "rgba(253, 135, 135, 0.8)",
                 ],
-              }}
-              options={{
-                plugins: {
-                  title: {
-                    text: "Users ",
-                  },
-                },
-              }}
-            />
-          </div>
-        </div>
+              },
+            ],
+          }}
+          options={{
+            plugins: {
+              title: {
+                text: "Users",
+              },
+            },
+          }}
+        />
+      </div>
+    </div>
       );
   
 }
