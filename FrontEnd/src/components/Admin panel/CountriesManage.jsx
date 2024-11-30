@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "./category.css"
 import {
   Box,
   Typography,
@@ -31,7 +32,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CloseIcon from '@mui/icons-material/Close';
 import Sidebar from './Sidebar';
-import './Admin.css';
+
 
 const CountriesManage = () => {
   
@@ -165,24 +166,27 @@ const CountriesManage = () => {
     </Modal>
   );
   return (
-    <Box sx={{ width: '100%' }}>
-      {/* <Sidebar /> */}
-      <div>
-
-      <Button variant="contained" onClick={() => setOpenAddCategoryModal(true)}>
-        Add New Category
-      </Button>
-
-      {addCategoryModalContent}
-      </div>
+    <Box sx={{ width: '100%', width: '100%', display: 'grid', gridTemplateColumns: '200px 1fr'  }}>
+      <Sidebar className="sidebar" />
+      <Box/>
+      
+      <div className='table'>
       <TableContainer component={Paper}>
+      <div className="content">
+
+<Button className="add-button" variant="contained" onClick={() => setOpenAddCategoryModal(true)}>
+  Add New Category
+</Button>
+
+{addCategoryModalContent}
+</div>
         <Table sx={{ minWidth: 650 }}>
           <TableHead>
-            <TableRow>
-              <TableCell>Category Name</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Image URL</TableCell>
-              <TableCell>Actions</TableCell>
+            <TableRow style={{backgroundColor:"##F4F4F4", border:"1px solid black"}}>
+              <TableCell style={{fontWeight:"Bold"}}>Category Name</TableCell>
+              <TableCell style={{fontWeight:"Bold"}}>Description</TableCell>
+              <TableCell style={{fontWeight:"Bold"}}>Image URL</TableCell>
+              <TableCell style={{fontWeight:"Bold"}} >Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -243,6 +247,7 @@ const CountriesManage = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
 
       {/* <Typography variant="h6" sx={{ mt: 2 }}>
         Add New Category

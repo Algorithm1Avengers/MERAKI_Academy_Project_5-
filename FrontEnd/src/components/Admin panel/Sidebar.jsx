@@ -42,7 +42,7 @@ const Sidebar = () => {
       
         </ListItem>
         <ListItem button component={Link} to="/Admin/categories" sx={{ '&:hover': { backgroundColor: '#ffc107' } }}>
-        <ListItemText primary="Categories" sx={{ color: 'black', '&:hover': { color: '#FBBF24' } }} />
+        <ListItemText primary="Categories" sx={{ color: 'black', '&:hover': { color: '#black' } }} />
 
       </ListItem>
     </List>

@@ -1,0 +1,17 @@
+
+
+.content {
+    display: flex;
+    margin-left: 30px; /* Adjust for sidebar width */
+    padding: 20px;
+    position: relative; /* Make the content container a positioning context */
+    /* background-color: #F4F4F4; */
+  }
+  
+  .add-button {
+    
+    /* display: flex !important;
+    justify-content: flex-start !important; */
+    
+ background-color:#ffc107!important;
+  }

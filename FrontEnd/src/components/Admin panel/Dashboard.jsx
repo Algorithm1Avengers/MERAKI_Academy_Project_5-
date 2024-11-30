@@ -84,10 +84,10 @@ const Dashboard = () => {
     <>
       <Box sx={{ display: 'flex', height: '100vh' }}>
         <Box sx={{
-          width: 250,
+          width: { xs: '100%', sm: 250 },
           color: 'white',
           p: 2,
-          display: { xs: 'none', sm: 'block' },
+          display: { xs: 'block', sm: 'block' },
           mt: 12,
         }}>
           <Sidebar />
