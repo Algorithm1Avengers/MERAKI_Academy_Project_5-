@@ -41,7 +41,7 @@
     min-height: 100vh;
     /*background: linear-gradient(to right, #f6f6f6, #e0e0e0);*/ /******####******/
     padding: 50px;
-    margin-top: -170px;/* Space to move the nav down */
+    margin-top: -145px;/* Space to move the nav down */
     margin-bottom: -56px; /**/
 }
 
@@ -101,7 +101,7 @@
     font-weight: bold;
     text-transform: capitalize;
     position: relative;
-    margin: 33px 0px 15px;/**/
+    margin: 30px 0px 15px;/**/
 }
 
 .product-name::before {
@@ -130,6 +130,7 @@
     margin-bottom: 20px;
     margin: 20px 0px;
     text-align: center;
+    margin-top: 10px;
 }
 
 .cart-component {
@@ -258,7 +259,8 @@
     height: 300px; 
     border-radius: 50%; 
     animation: rotate 39s linear infinite; /*Rotation time*/
-    margin-top: 40px;
+    margin-top: 25%;
+    margin-left: -61px;
 }
 
 /* Animation keyframes for rotation */
