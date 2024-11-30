@@ -1,4 +1,6 @@
-
+body {
+    overflow-x: hidden;
+}
 .navbar {
     display: flex;
     justify-content: space-around;
@@ -12,23 +14,31 @@
     background: linear-gradient(90deg, #FFC107, #FF4F3E);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    
+
 }
 
 .footer-section {
     margin: 0;
     padding: 15px;
+       overflow: hidden;
+    height: 230px !important;
+    overflow-x: hidden;
+
 }
 
 .footer {
     display: flex;
     width: 100vw; 
+    width: 100%;
+
     justify-content: space-around;
     background: linear-gradient(90deg, #FFC107, #FF4F3E);
     color: #fff;
     position: relative; 
     margin-top: auto; 
     text-align: start !important;
+    overflow-x: hidden;
+    margin-bottom: 0px;
 }
 
 .footer-section h3 {
@@ -77,9 +87,16 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
+    font-weight: bold;
+    max-width: 113px;
+    text-align: center;
 }
 
 .footer-section button:hover {
-    background-color: #e56a0d; 
+    background-color: rgba(255, 204, 86, 0.893); 
     color: #fff; 
+}
+
+.Subscribe{
+    display: grid;
 }

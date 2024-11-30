@@ -10,6 +10,7 @@ import './ProductDetails.css';
 import Cart from '../Cart/cart';
 import { DotLoader} from "react-spinners"; //loading spinner
 
+
 const ProductDetailes = () => {
     const navigate = useNavigate();
 
@@ -48,7 +49,8 @@ const ProductDetailes = () => {
 
 
   return (
-    <div className="product-details slide-up-animation">
+    <section>
+    <div className="product-details slide-up-animation ">
         {productDetails ? (
             
             <div className="product-info">
@@ -104,6 +106,7 @@ const ProductDetailes = () => {
                         <span className="arrow-icon"></span>
                     </button>
     </div>
+    </section>
   );
 };
 

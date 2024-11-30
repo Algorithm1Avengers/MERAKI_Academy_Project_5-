@@ -16,7 +16,7 @@ const HomePage = () => {
          <Welcome /> 
       </div>
       <Category />
-      <Footer />
+      
     </>
   );
 };
