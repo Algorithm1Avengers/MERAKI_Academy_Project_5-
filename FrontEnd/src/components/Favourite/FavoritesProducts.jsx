@@ -83,7 +83,7 @@ function FavoritesProducts() {
                         <div className="details">
                             <h3>{product.name}</h3>
                             <p className="price">
-                                Price:{product.price}JD
+                                Price:{product.price} JD
                             </p>
                             <div className="time-rating">
                             <p className="timee">
