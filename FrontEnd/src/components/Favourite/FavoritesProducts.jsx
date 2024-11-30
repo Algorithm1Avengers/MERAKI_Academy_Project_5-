@@ -5,6 +5,7 @@ import { FaHeart, FaDollarSign } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../../../Redux/reducers/products';  
 import { setProducts, setLoading } from "../../../Redux/reducers/products"
+import InventoryIcon from '@mui/icons-material/Inventory';
 import axios from 'axios';
 import "./Favorites.css"
 
@@ -85,9 +86,9 @@ function FavoritesProducts() {
                                 Price:{product.price}JD
                             </p>
                             <div className="time-rating">
-                                <p className="timee">
-                                    <span className="material-icons red-icon"></span>
-                                    {product.extra} ext
+                            <p className="timee">
+                                <InventoryIcon style={{ color: '#fffc09' ,fontSize: '17px' }} />
+                                { product.stock_quantity} Left
                                 </p>
                                 <p className="ratee">⭐ {product.rating}</p>
                             </div>
