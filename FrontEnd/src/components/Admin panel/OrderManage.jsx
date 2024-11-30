@@ -144,6 +144,7 @@ function OrderManage() {
     };
 
     return (
+    <div className='all-the-table'>
     <Box sx={{ display: 'flex', height: '100vh' }}>
     {/* Sidebar */}
     <Sidebar />
@@ -289,6 +290,7 @@ function OrderManage() {
     )}
         </Box>
     </Box>
+    </div>
     );
 }
 

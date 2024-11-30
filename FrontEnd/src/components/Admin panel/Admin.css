@@ -1,4 +1,6 @@
-
+.all-the-table{
+    margin-left: 240px;
+}
 /***********************************************************/
 .admin-container {
     display: flex;
