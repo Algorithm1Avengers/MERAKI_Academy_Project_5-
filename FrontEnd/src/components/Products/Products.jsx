@@ -54,8 +54,55 @@ const Products = () => {
     console.log("products", products)
 
 
+    /******************************/
+/***Change video by category***/
+let videoSrc = null;
+if (spotId == 7) {
+    videoSrc = '/petra3.mp4';  
+} else if (spotId == 6) {
+    videoSrc = '/main_meat.mp4';  
+} else if (spotId == 28) {
+} else if (spotId == '/petra1.mp4') {
+} else if (spotId == '/petra1.mp4') {
+    videoSrc = '/main_desert.mp4';  
+} else if (spotId == '/petra1.mp4') {
+    videoSrc = '/main_beverges.mp4';  
+} else if (spotId == '/petra1.mp4') {
+    videoSrc = '/12345678.mp4';  
+} else if (spotId == '/petra1.mp4') {
+    videoSrc = '/12345678.mp4';  
+} else if (spotId == '/petra1.mp4') {
+    videoSrc = '/12345678.mp4';  
+} else {
+    videoSrc = '/perta1.mp4';  
+}
+/******************************/
+/******************************/
+
+    /**MEMORY LAND 
+     * SOUVENIR PARADISE
+     * 
+     * Looking?
+     * Seeking Memories?
+
+    */
+
     return (
-        <section className="alll-cards">
+    <section className="The-section slide-up-animation">
+        <section className="upper-section">
+            <div className="hero-content">
+                <span className="small-text">Seeking Memories?</span>
+                <h1>WELCOME TO <br /> MEMORY LAND </h1>
+                <p>Discover unique and timeless treasures. Shop now and create lasting memories!</p>
+            </div>
+            <div className="hero-video">
+                <video autoPlay muted loop>
+                    <source src={videoSrc} type="video/mp4" />
+                </video>
+            </div>
+        </section>
+        
+        <div className="alll-cards">
             {isLoading ? (
                 <div className="loading-indicator">
                     <DotLoader color="#3498db" size={50} />
@@ -93,6 +140,7 @@ const Products = () => {
             ) : (
                 <p>No products found.</p>
             )}
+        </div>
         </section>
     );
 };
