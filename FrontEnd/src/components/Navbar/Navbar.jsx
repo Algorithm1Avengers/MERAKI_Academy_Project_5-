@@ -213,7 +213,7 @@ if (userId){
 
 /*linear-gradient(90deg, #ff8a00,  #FF5F6D)*/
   return (
-    <AppBar position="fixed" sx={{   background: "linear-gradient(90deg, #ff8a00, #ffc107)"
+    <AppBar position="fixed" sx={{   background: "linear-gradient(90deg, #FFC107, #FF4F3E)"
       , color: "black", mb: 2 , height: "66px" , margin:"0px", zIndex:"4"}}>
 
             {/* Video background */}

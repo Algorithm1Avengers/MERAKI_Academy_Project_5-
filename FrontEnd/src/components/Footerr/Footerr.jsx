@@ -30,8 +30,10 @@ const Footerr = () => {
             </div>
             <div className="footer-section">
                 <h3>Subscribe Our Newsletter</h3>
+                <div className='Subscribe'>
                 <input type="email" placeholder="Enter Your Email" />
                 <button>Subscribe</button>
+                </div>
             </div>
         </footer>
     );

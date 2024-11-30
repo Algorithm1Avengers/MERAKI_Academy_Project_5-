@@ -119,6 +119,7 @@ function App() {
 
     </Routes>
     </SocketMessages>
+    <Footerr/>
     </>
   )
 }
