@@ -24,23 +24,26 @@ const Sidebar = () => {
     <List sx={{ mt: 2 }}>
      
       <ListItem button component={Link} to="/Admin/dashbored" sx={{ '&:hover': { backgroundColor: '#ffc107' } }}>
-        <ListItemText primary="Dashboard" sx={{ color: 'black', '&:hover': { color: '#FBBF24' } }} />
+        <ListItemText primary="Dashboard" sx={{ color: 'black', '&:hover': { color: 'black' } }} />
       </ListItem>
     
       <ListItem button component={Link} to="/Admin/products" sx={{ '&:hover': { backgroundColor: '#ffc107' } }}>
-        <ListItemText primary="Products" sx={{ color: 'black', '&:hover': { color: '#FBBF24' } }} />
+        <ListItemText primary="Products" sx={{ color: 'black', '&:hover': { color: 'black' } }} />
       </ListItem>
       
       <ListItem button component={Link} to="/Admin/orders" sx={{ '&:hover': { backgroundColor: '#ffc107' } }}>
-        <ListItemText primary="Orders" sx={{ color: 'black', '&:hover': { color: '#FBBF24' } }} />
+        <ListItemText primary="Orders" sx={{ color: 'black', '&:hover': { color: 'black' } }} />
       </ListItem>
       
       <ListItem button component={Link} to="/Admin/users" sx={{ '&:hover': { backgroundColor: '#ffc107' } }}>
+
+        <ListItemText primary="Users" sx={{ color: 'black', '&:hover': { color: 'black' } }} />
+
         <ListItemText primary="Users" sx={{ color: 'black', '&:hover': { color: '#FBBF24' } }} />
         </ListItem>
         <ListItem button component={Link} to="/Admin/categories" sx={{ '&:hover': { backgroundColor: '#ffc107' } }}>
         <ListItemText primary="Categories" sx={{ color: 'black', '&:hover': { color: '#FBBF24' } }} />
-      
+
       </ListItem>
     </List>
     <Divider sx={{ backgroundColor: '#0D2D7A' }} />
