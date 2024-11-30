@@ -53,7 +53,7 @@ console.log(name)
 const [firstName, setFirstName] = useState(name)
 useEffect(() => {
   getSpotByName();
-}, []);
+}, [[spotId]]);
 function srcset(image, width, height, rows = 1, cols = 1) {
   return {
     src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
@@ -86,7 +86,7 @@ fetchUserData();
 
 
 
-const handleSubmit=()=>{
+const handleSubmit=async()=>{
   console.log("clicked")
   if (isLoggedIn){
     const newError = {};
@@ -102,23 +102,28 @@ const body={
   comment,
   rating
 }
-axios.post("http://localhost:5000/review", body)
-.then((result) => {
+try {
+  const result = await axios.post("http://localhost:5000/review", body);
   if (result.status === 200) {
-    setSuccessMessage("Your Comment added successful!");
-    console.log("comment sent")
-    
+    setSuccessMessage("Your Comment added successfully!");
+    console.log("comment sent");
+
+    await getSpotByName(); 
+    setComment(""); 
+    setRating(0); 
   }
-})
-.catch((err) => {
-  console.log(body)
+} catch (err) {
+  console.log(body);
   console.log(err);
   setError({ api: "Comment failed. Please try again." });
-});
-  } else{
-    return console.log("Please login to add comment")
-  }
 }
+} else {
+console.log("Please login to add comment");
+}
+};
+
+
+
 console.log(spotInfo[0])
 spotInfo[0]?.spot_name
 const getWeather = async (city) => {
@@ -378,7 +383,7 @@ console.log("spotId",spotId)
                   max={5}
                 />
               </Box>
-              <Button variant="contained" color="primary" onClick={handleSubmit} sx={{ mt: 2 }}>
+              <Button variant="contained" color="primary" onClick={handleSubmit} sx={{ mt: 2, backgroundColor: '#FF9401' }}>
                 Save
               </Button>
             </Paper>
@@ -390,7 +395,7 @@ console.log("spotId",spotId)
              
              <Avatar
                alt="Profile Picture"
-               src={image || "https://via.placeholder.com/120"} 
+               src={review.image || "https://via.placeholder.com/120"} 
                sx={{
                  position: 'absolute',
                  top: 10, 

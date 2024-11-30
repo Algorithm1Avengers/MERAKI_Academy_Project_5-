@@ -83,58 +83,16 @@ const Dashboard = () => {
 
     <>
       <Box sx={{ display: 'flex', height: '100vh' }}>
-      <Box
-          sx={{
-            width: 250,
-            /* bgcolor: 'primary.main', */
-            color: 'white',
-            p: 2,
-            display: { xs: 'none', sm: 'block' }, 
-            mt : 12,
-          }}
-        >
-          <Sidebar/>
-      {/*  <Drawer
-      variant="permanent"
-      sx={{
-        position: 'fixed', 
-        top: 0,
-        left: 0,
-        width: 240,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: 240,
-          boxSizing: 'border-box',
-          marginTop: '70px',
-          backgroundColor: '#1E3A8A', 
-          color: '#FFFFFF', 
-          
-        },
-      }}
-    >
-      <List sx={{ mt: 2 }}>
-       
-        <ListItem button component={Link} to="/Admin/dashboard" sx={{ '&:hover': { backgroundColor: '#1D4ED8' } }}>
-          <ListItemText primary="Dashboard" sx={{ color: '#FFFFFF', '&:hover': { color: '#FBBF24' } }} />
-        </ListItem>
-      
-        <ListItem button component={Link} to="/Admin/products" sx={{ '&:hover': { backgroundColor: '#1D4ED8' } }}>
-          <ListItemText primary="Products" sx={{ color: '#FFFFFF', '&:hover': { color: '#FBBF24' } }} />
-        </ListItem>
-        
-        <ListItem button component={Link} to="/Admin/orders" sx={{ '&:hover': { backgroundColor: '#1D4ED8' } }}>
-          <ListItemText primary="Orders" sx={{ color: '#FFFFFF', '&:hover': { color: '#FBBF24' } }} />
-        </ListItem>
-        
-        <ListItem button component={Link} to="/Admin/users" sx={{ '&:hover': { backgroundColor: '#1D4ED8' } }}>
-          <ListItemText primary="Users" sx={{ color: '#FFFFFF', '&:hover': { color: '#FBBF24' } }} />
-        </ListItem>
-      </List>
-      <Divider sx={{ backgroundColor: '#0D2D7A' }} />
-    </Drawer> */}
-    </Box>
+        <Box sx={{
+          width: 250,
+          color: 'white',
+          p: 2,
+          display: { xs: 'none', sm: 'block' },
+          mt: 12,
+        }}>
+          <Sidebar />
+        </Box>
 
-        
         <Box sx={{ flexGrow: 1, p: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Typography variant="h6">Welcome Back!</Typography>
@@ -145,9 +103,7 @@ const Dashboard = () => {
             <Typography variant="h4">Dashboard</Typography>
           </Box>
 
-         
           <Grid container spacing={3}>
-           
             <Grid item xs={12} sm={6} md={3}>
               <Card sx={{ bgcolor: 'success.main', color: 'white' }}>
                 <CardContent>
@@ -158,7 +114,6 @@ const Dashboard = () => {
               </Card>
             </Grid>
 
-          
             <Grid item xs={12} sm={6} md={3}>
               <Card sx={{ bgcolor: 'primary.main', color: 'white' }}>
                 <CardContent>
@@ -169,7 +124,6 @@ const Dashboard = () => {
               </Card>
             </Grid>
 
-           
             <Grid item xs={12} sm={6} md={3}>
               <Card sx={{ bgcolor: 'warning.main', color: 'white' }}>
                 <CardContent>
@@ -180,7 +134,6 @@ const Dashboard = () => {
               </Card>
             </Grid>
 
-            
             <Grid item xs={12} sm={6} md={3}>
               <Card sx={{ bgcolor: 'secondary.main', color: 'white' }}>
                 <CardContent>
@@ -189,14 +142,14 @@ const Dashboard = () => {
                   <Typography variant="h5">{data.comments}</Typography>
                 </CardContent>
               </Card>
-              
             </Grid>
           </Grid>
-          <Box sx={{ mt: 3 }}>
+
+          {/* Directly below the cards with no extra margin */}
+          <Box sx={{ mt: 0 }}>
             <Charts />
           </Box>
         </Box>
-        
       </Box>
       
     </>
