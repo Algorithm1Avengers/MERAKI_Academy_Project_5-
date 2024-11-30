@@ -8,6 +8,7 @@ import { FaHeart, FaDollarSign } from 'react-icons/fa';
 import { MdLocalFireDepartment } from 'react-icons/md';
 import './Products.css';
 import { DotLoader} from "react-spinners"; //loading spinner
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 const Products = () => {
     const {  spotId } = useParams();
@@ -129,8 +130,8 @@ if (spotId == 7) {
                             </p>
                             <div className="time-rating">
                                 <p className="timee">
-                                    <MdLocalFireDepartment className="fire-icon" />
-                                    {product.extra} ext
+                                <InventoryIcon style={{ color: '#fffc09' ,fontSize: '17px' }} />
+                                { product.stock_quantity} Left
                                 </p>
                                 <p className="ratee">⭐ {product.rating}</p>
                             </div>
@@ -146,3 +147,4 @@ if (spotId == 7) {
 };
 
 export default Products;
+

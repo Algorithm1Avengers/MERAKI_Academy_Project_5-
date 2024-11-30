@@ -60,38 +60,39 @@ const OrderConfirmation = () => {
     }, [id]);
 
     return (
-        <div className="order-confirmation-container">
-            <h1>Your order has been received!</h1>
-            <div className="video-container">
-                  <video width="600" autoPlay loop muted>
-                    <source src="/tawseel.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+        <>
+          {isLoading ? (
+            <div className="loading-indicator">
+              <DotLoader color="#3498db" size={50} />
             </div>
-
-            <p>Be ready! our representative will contact you soon!</p>
-            
-    {isLoading ? (
-                <div className="loading-indicator">
-                    <DotLoader color="#3498db" size={50} />
-                </div>
-                ) :
-                orderDetails ? (
-                      <>  
-                          <h2>Order Details:</h2>
-                          <p>Order Number: {orderDetails.id}</p>
-                          <p>Shipping Address: {orderDetails.full_address}</p>
-                          <p>Total: {orderDetails.total_amount
-                          }</p>
-                          <p>Payment Method: {orderDetails.payment_method}</p>
-                          <button onClick={() => navigate('/my-PreviousOrders')}>View all previous orders</button>
-                      </>
-                  ) : (
-                      error && <p style={{ color: 'red' }}>{error}</p>
-                      )}
-              
-        </div>
-    );
-}
+          ) : (
+            <div className="order-confirmation-container">
+              <h1>Your order has been received!</h1>
+              <div className="video-container">
+                <video width="600" autoPlay loop muted>
+                  <source src="/tawseel.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>Be ready! our representative will contact you soon!</p>
+              {orderDetails ? (
+                <>
+                  <h2>Order Details:</h2>
+                  <p>Order Number: {orderDetails.id}</p>
+                  <p>Shipping Address: {orderDetails.full_address}</p>
+                  <p>Total: {orderDetails.total_amount}</p>
+                  <p>Payment Method: {orderDetails.payment_method}</p>
+                  <button onClick={() => navigate('/my-PreviousOrders')}>
+                    View all previous orders
+                  </button>
+                </>
+              ) : (
+                error && <p style={{ color: 'red' }}>{error}</p>
+              )}
+            </div>
+          )}
+        </>
+      );
+    }      
 
 export default OrderConfirmation

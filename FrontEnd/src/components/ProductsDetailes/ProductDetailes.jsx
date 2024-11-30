@@ -64,7 +64,7 @@ const ProductDetailes = () => {
                 <div className="details-container">
                     <h2 className="product-name">{productDetails.name}</h2>
                     <p className="product-description">{productDetails.description}</p>
-                    <p className="product-price">Price per unit: ${productDetails.price}</p>
+                    <p className="product-price">Price per unit: {productDetails.price} JD</p>
 
                     {/* Quantity control*/}
                     <div className="quantity-selector">
@@ -77,7 +77,7 @@ const ProductDetailes = () => {
                         </button>
                     </div>
 
-                    <p className="total-price">Total Price : ${totalPrice}</p>
+                    <p className="total-price">Total Price : {totalPrice} JD</p>
 
                     {/* add to cart button */}
                         <div className="cart-component-AddBtn">

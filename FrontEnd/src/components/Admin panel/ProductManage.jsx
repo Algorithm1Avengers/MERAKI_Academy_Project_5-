@@ -58,6 +58,7 @@ const ProductManage = () => {
     };
 
     return (
+    <div className='all-the-table'>
         <div className="admin-container">
             <Sidebar />
             <div className="admin-content">
@@ -198,6 +199,7 @@ const ProductManage = () => {
 )}
 
         </div>
+</div>
     );
 };
 

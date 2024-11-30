@@ -141,6 +141,7 @@ function OrderManage() {
     };
 
     return (
+    <div className='all-the-table'>
     <Box sx={{ display: 'flex', height: '100vh' }}>
     {/* Sidebar */}
     <Sidebar />
@@ -202,19 +203,19 @@ function OrderManage() {
                                                     
                                                      <IconButton 
                                                         onClick={() => handleOrderStatusChange(order.id, 'completed')}
-                                                        style={{ color: '#28a745' }} 
+                                                        style={{ color: '#28a745', margin: '0 -11px',marginRight:'-3.3px' }} 
                                                     >
                                                         <CheckIcon />
                                                     </IconButton>
                                                      <IconButton 
                                                         onClick={() => handleOrderStatusChange(order.id, 'cancelled')}
-                                                        style={{ color: '#dc3545' }}
+                                                        style={{ color: '#dc3545', margin: '0 3px',marginRight:'-3p.2x' }}
                                                     >
                                                         <CancelIcon />
                                                     </IconButton>
                                                      <IconButton 
                                                         onClick={() => handleOrderStatusChange(order.id, 'processing')}
-                                                        style={{ color: '#ffc107' }}
+                                                        style={{ color: '#ffc107', margin: '0 2px' }}
                                                     >
                                                         <HourglassEmptyIcon />
                                                     </IconButton>
@@ -286,6 +287,7 @@ function OrderManage() {
     )}
         </Box>
     </Box>
+    </div>
     );
 }
 

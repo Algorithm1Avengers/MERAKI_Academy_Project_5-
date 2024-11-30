@@ -6,6 +6,8 @@ import axios from 'axios';
 import { FaHeart, FaDollarSign } from 'react-icons/fa';
 import { MdLocalFireDepartment } from 'react-icons/md';
 import { DotLoader } from "react-spinners"; 
+import InventoryIcon from '@mui/icons-material/Inventory';
+
 //import './Market.css'; 
 
 
@@ -80,9 +82,9 @@ const Market = () => {
                             </p>
                             
                             <div className="time-rating">
-                                <p className="timee">
-                                    <MdLocalFireDepartment className="fire-icon" />
-                                    {product.extra} ext
+                            <p className="timee">
+                                <InventoryIcon style={{ color: '#fffc09' ,fontSize: '17px' }} />
+                                { product.stock_quantity} Left
                                 </p>
                                 <p className="ratee">⭐ {product.rating}</p>
                             </div>
