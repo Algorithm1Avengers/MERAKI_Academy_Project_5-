@@ -54,7 +54,31 @@ const Products = () => {
     console.log("products", products)
 
 
-    let videoSrc = './src/assets/vid3.mp4';
+    /******************************/
+/***Change video by category***/
+let videoSrc = null;
+if (spotId == 7) {
+    videoSrc = '/petra3.mp4';  
+} else if (spotId == 6) {
+    videoSrc = '/main_meat.mp4';  
+} else if (spotId == 28) {
+} else if (spotId == '/petra1.mp4') {
+} else if (spotId == '/petra1.mp4') {
+    videoSrc = '/main_desert.mp4';  
+} else if (spotId == '/petra1.mp4') {
+    videoSrc = '/main_beverges.mp4';  
+} else if (spotId == '/petra1.mp4') {
+    videoSrc = '/12345678.mp4';  
+} else if (spotId == '/petra1.mp4') {
+    videoSrc = '/12345678.mp4';  
+} else if (spotId == '/petra1.mp4') {
+    videoSrc = '/12345678.mp4';  
+} else {
+    videoSrc = '/perta1.mp4';  
+}
+/******************************/
+/******************************/
+
     /**MEMORY LAND 
      * SOUVENIR PARADISE
      * 
