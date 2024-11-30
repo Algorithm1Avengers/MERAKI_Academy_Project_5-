@@ -114,7 +114,7 @@ function App() {
     <Route path="/Admin/Orders" element={<OrderManage/>} />
     <Route path="/Admin/Products" element={<ProductManage/>} />
     <Route path="/Admin/users" element={<Users/>} />
-    <Route path="/Admin/countries" element={<CountriesManage/>} />
+    <Route path="/Admin/categories" element={<CountriesManage/>} />
 
     </Routes>
     </SocketMessages>
