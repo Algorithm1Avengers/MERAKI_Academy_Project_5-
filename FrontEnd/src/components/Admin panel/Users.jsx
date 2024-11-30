@@ -1,6 +1,6 @@
 import React , {useEffect,useContext,useState} from 'react'
 import axios from 'axios'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, CircularProgress,Button,  Grid,
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, CircularProgress,Button,  Grid2,
   Card,
   CardContent,
   IconButton,
@@ -70,84 +70,86 @@ const handleDeleteUser = async (userId) => {
 
   return (
     <>
-     <Sidebar/> 
-    <Typography variant="h4" gutterBottom align="center" className="heading">
-        Spot Seekers Users Information
-      </Typography>
-      <Grid container spacing={3} justifyContent="center">
-        {userdata.map((user) => (
-          <Grid item xs={12} sm={6} md={4} key={user._id}>
-            <Card className="user-card">
-              <CardContent>
-               
-                <div className="user-image">
-                  <img
-                    src={user.image || '/default-image.png'}
-                    alt="User"
-                    className="circle-image"
-                  />
-                </div>
-                
-                <Typography variant="h6">{`${user.firstname} ${user.lastname}`}</Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Age: {user.age} | Email: {user.email || 'N/A'}
-                </Typography>
-                <Divider style={{ margin: '10px 0' }} />
+   <Sidebar />
+      <div className="content-wrapper">
+        <div className="header-container">
+          <Typography variant="h4" gutterBottom align="center" id="info">
+            Spot Seekers Users Information
+          </Typography>
+        </div>
 
-
-
-
-                <Typography variant="body1" gutterBottom>
-                  <strong>Delete User</strong>
-                
-                <IconButton
-             color="error"
-                            onClick={() => handleDeleteUser(user.id)}
-                            aria-label="delete"
-                            size="small"
-                          >
-                            <DeleteIcon />
-                          </IconButton>
-                          </Typography>
-               
-                <Typography variant="body1" gutterBottom>
-                  <strong>Comments:</strong>
-                </Typography>
-                <IconButton onClick={() => handleToggleComments(user._id)} size="small">
-                  {expandedComments[user._id] ? 'Hide Comments' : 'Show Comments'}
-                </IconButton>
-
-               
-                <Collapse in={expandedComments[user._id]}>
-                  <div className="comments-list">
-                    {user.comments.length > 0 ? (
-                      user.comments.map((comment, index) => (
-                        <div className="comment-item" key={index}>
-                          <Typography variant="body2" className="comment-text">
-                            {comment}
-                          </Typography>
-                          <IconButton
-                            color="error"
-                            onClick={() => handleDeleteComment(user._id, comment)}
-                            aria-label="delete"
-                            size="small"
-                          >
-                            <DeleteIcon />
-                          </IconButton>
-                        </div>
-                      ))
-                    ) : (
-                      <Typography variant="body2" color="textSecondary">
-                        No comments available.
-                      </Typography>
-                    )}
+        <div className="user-cards-container">
+          {userdata.map((user) => (
+            <div className="user-card-wrapper" key={user._id}>
+              <Card className="user-card">
+                <CardContent>
+                  <div className="user-image">
+                    <img
+                      src={user.image || '/default-image.png'}
+                      alt="User"
+                      className="circle-image"
+                    />
                   </div>
-                </Collapse>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+                  <Typography variant="h6">{`${user.firstname} ${user.lastname}`}</Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Age: {user.age} | Email: {user.email || 'N/A'}
+                  </Typography>
+                  <Divider style={{ margin: '10px 0' }} />
+                  <Typography variant="body1" gutterBottom>
+                    <strong>Delete User</strong>
+                    <IconButton
+                      color="error"
+                      onClick={() => handleDeleteUser(user._id)}
+                      aria-label="delete"
+                      size="small"
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Typography>
+                  <Typography variant="body1" gutterBottom>
+                    <strong>Comments:</strong>
+                  </Typography>
+                  <IconButton
+                    onClick={() => setExpandedComments((prev) => ({
+                      ...prev, 
+                      [user._id]: !prev[user._id]
+                    }))}
+                    size="small"
+                  >
+                    {expandedComments[user._id] ? 'Hide Comments' : 'Show Comments'}
+                  </IconButton>
+
+                  <Collapse in={expandedComments[user._id]}>
+                    <div className="comments-list">
+                      {user.comments.length > 0 ? (
+                        user.comments.map((comment, index) => (
+                          <div className="comment-item" key={index}>
+                            <Typography variant="body2" className="comment-text">
+                              {comment}
+                            </Typography>
+                            <IconButton
+                              color="error"
+                              onClick={() => handleDeleteComment(user._id, comment)}
+                              aria-label="delete"
+                              size="small"
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </div>
+                        ))
+                      ) : (
+                        <Typography variant="body2" color="textSecondary">
+                          No comments available.
+                        </Typography>
+                      )}
+                    </div>
+                  </Collapse>
+                </CardContent>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   );
 };

@@ -36,24 +36,34 @@
     margin-top: 20px;
   }
   
+  .header-container {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    top: 50px ;
+    right:320px ;
+    margin: 20px 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
+  #info{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
   .user-card {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    margin: 20px;
+  width: 100%; 
+  max-width: 350px; 
   }
   
   .user-card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
   
-  /* Image styling */
+  
   .user-image img {
     width: 100px;
     height: 100px;
-    object-fit: cover;  /* Ensures the image covers the area without distortion */
+    object-fit: cover;  
     margin-bottom: 10px;
     display: block;
     margin-left: auto;
@@ -61,7 +71,7 @@
     border-radius: 50%; 
   }
   
-  /* Style for comment section */
+  
   .comments-list {
     margin-top: 10px;
   }
@@ -80,4 +90,56 @@
   
   .comment-item .MuiIconButton-root {
     padding: 5px;
+  }
+
+  .content-wrapper {
+    margin-left: 250px; 
+    padding: 40px;
+    width: 100%;
+    box-sizing: border-box; 
+    overflow-x: hidden; 
+  }
+  .user-cards-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
+  }
+  
+ 
+  .user-card-wrapper {
+    flex: 0 0 48%;
+    margin-bottom: 20px; 
+  }
+  
+
+  .user-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .circle-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .comments-list {
+    margin-top: 10px;
+  }
+  
+  .comment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .comment-text {
+    flex: 1;
   }
