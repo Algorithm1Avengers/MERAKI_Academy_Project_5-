@@ -44,8 +44,8 @@ if (error.response) {
 setMessage("Error happened while Get Data, please try again");
 }}
 
-const getWeather = async (city) => {
-  const apiKey = 'f6de574895244be8b1db01f15b083a07';
+ const getWeather = async (city) => {
+  const apiKey = '1582a3807f8941f587d949d7c830d0db';
   const url = `https://api.weatherbit.io/v2.0/current?city=${city} &key=${apiKey}`;
 
   try {
@@ -58,7 +58,7 @@ const getWeather = async (city) => {
   } catch (error) {
     console.error('Error fetching weather:', error);
   }
-};
+}; 
 
 
 useEffect(() => {
@@ -67,14 +67,14 @@ useEffect(() => {
 
 
 console.log(categoryList)
-useEffect(() => {
+ useEffect(() => {
   categoryList&&categoryList.forEach((spot) => {
     if (spot.spot_name && !weather[spot.spot_name]) {
       getWeather(spot.spot_name); 
     }
   });
 }, [categoryList, weather]);
-console.log(weather)
+console.log(weather) 
 
 const addToFavourite=(spotId)=>{
 const body={

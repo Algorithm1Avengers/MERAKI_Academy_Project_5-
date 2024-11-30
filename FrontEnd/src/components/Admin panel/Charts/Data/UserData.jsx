@@ -1,15 +1,15 @@
 const Data=[
     {
       "label": "Admin",
-      "value": 5
+      "value": 3
     },
     {
       "label": "Users",
-      "value": 50
+      "value": 30
     },
     {
       "label": "TouristGuide",
-      "value": 20
+      "value": 8
     }
   ]
 
