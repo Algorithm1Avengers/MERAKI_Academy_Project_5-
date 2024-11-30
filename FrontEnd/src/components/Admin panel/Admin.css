@@ -360,14 +360,9 @@ h2 {
     }
 }
 
-a{
-    font-size: x-small;
-}
+
 
 .css-1iblg5b{
-    background-color: #ddd;
+    background-color: #ffffff !important
 }
 
-.MuiButtonBase-root{
-    background-color: red;
-}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "./category.css"
 import {
   Box,
   Typography,
@@ -31,7 +32,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CloseIcon from '@mui/icons-material/Close';
 import Sidebar from './Sidebar';
-import './Admin.css';
+
 
 const CountriesManage = () => {
   
@@ -165,24 +166,31 @@ const CountriesManage = () => {
     </Modal>
   );
   return (
-    <Box sx={{ width: '100%' }}>
-      {/* <Sidebar /> */}
-      <div>
-
-      <Button variant="contained" onClick={() => setOpenAddCategoryModal(true)}>
-        Add New Category
-      </Button>
-
-      {addCategoryModalContent}
-      </div>
+    <div className="table-container">
+    <Box sx={{ width: '95%', display: 'grid', gridTemplateColumns: '200px 1fr', marginLeft:"50px",marginRight:"20px" }}>
+      
+      <Sidebar className="sidebar" />
+      <Box/>
+      
+      <div className='table'>
+      
       <TableContainer component={Paper}>
+      <h1 className="manage-title" style={{marginTop:"20px"}}>Manage Categories</h1>
+      <div className="content">
+
+<Button className="add-product-button" variant="contained" onClick={() => setOpenAddCategoryModal(true)}>
+  Add New Category
+</Button>
+
+{addCategoryModalContent}
+</div>
         <Table sx={{ minWidth: 650 }}>
           <TableHead>
-            <TableRow>
-              <TableCell>Category Name</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Image URL</TableCell>
-              <TableCell>Actions</TableCell>
+            <TableRow style={{backgroundColor:"##F4F4F4", border:"2px  solid #D8D8D8"}}>
+              <TableCell style={{fontWeight:"Bold"}}>Category Name</TableCell>
+              <TableCell style={{fontWeight:"Bold"}}>Description</TableCell>
+              <TableCell style={{fontWeight:"Bold"}}>Image </TableCell>
+              <TableCell style={{fontWeight:"Bold"}} >Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -224,16 +232,16 @@ const CountriesManage = () => {
                   <>
                     <TableCell>{category.category_name}</TableCell>
                     <TableCell>{category.description}</TableCell>
-                    <TableCell><a href={category.image_url} target="_blank" rel="noopener noreferrer">
-              {category.image_url}
-            </a></TableCell>
+                    <TableCell><img src={category.image_url} className="cat-img"style={{width:"100px", height:"100px",borderRadius:"2rem" }}/>
+              
+          </TableCell>
                     <TableCell>
                       <IconButton onClick={() => handleEdit(category)}>
-                        <EditIcon />
+                        <EditIcon style={{color:"green"}} />
                       </IconButton>
                       <IconButton onClick={() => handleDelete(category.category_name)}>   
 
-                        <DeleteIcon />
+                        <DeleteIcon style={{color:"red"}}/>
                       </IconButton>
                     </TableCell>
                   </>
@@ -243,6 +251,7 @@ const CountriesManage = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
 
       {/* <Typography variant="h6" sx={{ mt: 2 }}>
         Add New Category
@@ -275,6 +284,7 @@ const CountriesManage = () => {
         </Button>
       </form> */}
     </Box>
+    </div>
   );
 };
 
