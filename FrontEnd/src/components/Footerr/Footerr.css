@@ -27,18 +27,21 @@ body {
 }
 
 .footer {
-    display: flex;
-    width: 100vw; 
+    display: flex
+;
+    /* width: 100vw; */
     width: 100%;
-
     justify-content: space-around;
     background: linear-gradient(90deg, #FFC107, #FF4F3E);
     color: #fff;
-    position: relative; 
-    margin-top: auto; 
+    position: absolute;
+    margin-top: auto;
     text-align: start !important;
     overflow-x: hidden;
     margin-bottom: 0px;
+    margin-left: 0px;
+    left: 0px;
+    right: 0px;
 }
 
 .footer-section h3 {
