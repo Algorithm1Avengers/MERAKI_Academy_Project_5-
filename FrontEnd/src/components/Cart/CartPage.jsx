@@ -123,6 +123,7 @@ function CartPage() {
 
 
   return (
+    <div className='background'>
     <div className="all-the-page">
         <div className="cart-page">
                 <h1 className="YourCart">Your Cart</h1>
@@ -211,7 +212,7 @@ function CartPage() {
                 )}
         </div>
     </div>
-    
+    </div>
   )
 }
 

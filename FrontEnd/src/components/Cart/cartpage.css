@@ -1,10 +1,17 @@
-    .all-the-page{
+body {
+    background-color: #f7f5f2 !important;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  .all-the-page{
         display: flex;
         flex-direction: column;
         padding-top: 50px; 
         padding-bottom: 70px;
         position: relative;
-        
         }
 
 
@@ -20,6 +27,7 @@
         color: #333; 
         position: relative; 
         width: 750px;
+        
     }
     
 
@@ -32,6 +40,7 @@
         bottom: -10px;
         border-radius: 15px;
         background: linear-gradient(90deg, #ff8a00, #da1b60);
+        background: linear-gradient(90deg, #ff961e, #ff3c83);
         z-index: -1;
     }
 

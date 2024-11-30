@@ -211,7 +211,7 @@ if (userId){
   console.log(image)
 //background: "linear-gradient(90deg, #ff8a00, #fc2976)"
 
-
+/*linear-gradient(90deg, #ff8a00,  #FF5F6D)*/
   return (
     <AppBar position="fixed" sx={{   background: "linear-gradient(90deg, #ff8a00, #ffc107)"
       , color: "black", mb: 2 , height: "66px" , margin:"0px", zIndex:"4"}}>
