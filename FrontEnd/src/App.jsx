@@ -18,6 +18,7 @@ import Market from './components/Market/Market'
 import FavoritesProducts from './components/Favourite/FavoritesProducts'
 import OrderManage from "./components/Admin panel/OrderManage"
 import ProductManage from "./components/Admin panel/ProductManage"
+import Footerr from './components/Footerr/Footerr'
 
 import About from "./components/About/About"
 
