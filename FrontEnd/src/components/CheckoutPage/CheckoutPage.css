@@ -11,7 +11,7 @@
     margin-top: 50px !important;
     position: relative;
     margin-top: 108px; /*navbar*/
-    margin-bottom: 20px;
+    margin-bottom: 60px !important;
 
     text-align: center;
     justify-content: center;
@@ -36,6 +36,8 @@ form {
     padding: 0 50px;
     height: 100%;
     text-align: center;
+    margin-bottom: 70px !important;
+
 }
 
 /*frame*/
@@ -58,6 +60,7 @@ form {
  background: linear-gradient(90deg, #ff961e, #ff3c83);
 
 z-index: -1;
+
 }
 
 .checkout-header{

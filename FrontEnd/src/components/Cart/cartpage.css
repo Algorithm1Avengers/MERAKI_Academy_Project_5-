@@ -11,12 +11,14 @@ body {
     justify-content: center;
     align-items: center;
 }
+
   .all-the-page{
         display: flex;
         flex-direction: column;
         padding-top: 50px; 
         padding-bottom: 70px;
         position: relative;
+        
         }
 
 

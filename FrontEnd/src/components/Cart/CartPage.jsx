@@ -126,7 +126,7 @@ function CartPage() {
         <div className="background">
           {isLoading ? (
             <div className="loading-indicator">
-              <DotLoader color="#3498db" size={60} />
+              <DotLoader color="#FF8A00" size={60} />
             </div>
           ) : (
             <div className="all-the-page">

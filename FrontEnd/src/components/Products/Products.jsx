@@ -58,11 +58,11 @@ const Products = () => {
     /******************************/
 /***Change video by category***/
 let videoSrc = null;
-if (spotId == 7) {
+if (spotId == 6) {
     videoSrc = '/petra3.mp4';  
-} else if (spotId == 6) {
-    videoSrc = '/main_meat.mp4';  
 } else if (spotId == 28) {
+    videoSrc = '/china1.mp4';  
+} else if (spotId == 4) {
 } else if (spotId == '/petra1.mp4') {
 } else if (spotId == '/petra1.mp4') {
     videoSrc = '/main_desert.mp4';  
@@ -89,61 +89,66 @@ if (spotId == 7) {
     */
 
     return (
-    <section className="The-section slide-up-animation">
-        <section className="upper-section">
-            <div className="hero-content">
-                <span className="small-text">Seeking Memories?</span>
-                <h1>WELCOME TO <br /> MEMORY LAND </h1>
-                <p>Discover unique and timeless treasures. Shop now and create lasting memories!</p>
-            </div>
-            <div className="hero-video">
-                <video autoPlay muted loop>
-                    <source src={videoSrc} type="video/mp4" />
-                </video>
-            </div>
-        </section>
-        
-        <div className="alll-cards">
+        <>
             {isLoading ? (
                 <div className="loading-indicator">
-                    <DotLoader color="#3498db" size={50} />
+                    <DotLoader color="#FF8A00" size={50} />
                 </div>
-            ) : products && products.length > 0 ? (
-                products.map((product) => (
-                    <div key={product.id} className="product-card">
-                        <div className="img-wrapper">
-                            <img
-                                src={product.image}
-                                alt={product.name}
-                                className="product-image"
-                                onClick={() => handleproductClick(product.id)}  
-                            />
-                            <FaHeart
-                                className={`favorite-icon ${favorites.includes(product.id) ? 'favorited' : ''}`}
-                                onClick={() => toggleFavoriteHandler(product.id)} 
-                            />
-                        </div>
-                        <div className="details">
-                            <h3>{product.name}</h3>
-                            <p className="price">
-                                Price: {product.price} JD
-                            </p>
-                            <div className="time-rating">
-                                <p className="timee">
-                                <InventoryIcon style={{ color: '#fffc09' ,fontSize: '17px' }} />
-                                { product.stock_quantity} Left
-                                </p>
-                                <p className="ratee">⭐ {product.rating}</p>
-                            </div>
-                        </div>
-                    </div>
-                ))
             ) : (
-                <p>No products found.</p>
+                <section className="The-section slide-up-animation">
+                    <section className="upper-section">
+                        <div className="hero-content">
+                            <span className="small-text">Seeking Memories?</span>
+                            <h1>WELCOME TO <br /> MEMORY LAND </h1>
+                            <p>Discover unique and timeless treasures. Shop now and create lasting memories!</p>
+                        </div>
+                        <div className="hero-video">
+                            <video autoPlay muted loop>
+                                <source src={videoSrc} type="video/mp4" />
+                            </video>
+                        </div>
+                    </section>
+                    
+                    <div className="alll-cards">
+                        {products && products.length > 0 ? (
+                            products.map((product) => (
+                                <div key={product.id} className="product-card">
+                                    <div className="img-wrapper">
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="product-image"
+                                            onClick={() => handleproductClick(product.id)}  
+                                        />
+                                        <FaHeart
+                                            className={`favorite-icon ${favorites.includes(product.id) ? 'favorited' : ''}`}
+                                            onClick={() => toggleFavoriteHandler(product.id)} 
+                                        />
+                                    </div>
+                                    <div className="details">
+                                        <h3>{product.name}</h3>
+                                        <p className="price">
+                                            Price: {product.price} JD
+                                        </p>
+                                        <div className="time-rating">
+                                            <p className="timee">
+                                                <InventoryIcon style={{ color: '#fffc09' ,fontSize: '17px' }} />
+                                                {product.stock_quantity} Left
+                                            </p>
+                                            <p className="ratee">⭐ {product.rating}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No products found.</p>
+                        )}
+                    </div>
+                </section>
             )}
-        </div>
-        </section>
+        </>
     );
+    
 };
 
 export default Products;

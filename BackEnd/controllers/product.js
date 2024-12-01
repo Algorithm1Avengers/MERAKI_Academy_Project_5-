@@ -64,7 +64,7 @@ const getProductsByTouristSpotsId = async (req, res) => {
 
     try {
         const result = await pool.query(
-            'SELECT * FROM products WHERE spot_id = $1', 
+            'SELECT * FROM products WHERE spot_id = $1 ORDER BY id ASC', 
             [spotId]
         );
 
