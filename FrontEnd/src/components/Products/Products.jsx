@@ -92,7 +92,7 @@ if (spotId == 6) {
         <>
             {isLoading ? (
                 <div className="loading-indicator">
-                    <DotLoader color="#3498db" size={50} />
+                    <DotLoader color="#FF8A00" size={50} />
                 </div>
             ) : (
                 <section className="The-section slide-up-animation">
